@@ -11,14 +11,15 @@ class RoleController extends Controller
 {
     public $data = [];
 
-    protected $limit = 10;
+    protected $limit = 1;
 
     public function __construct(RoleService $roleService)
     {
         $this->roleService = $roleService;
     }
-
+    //request là lấy dữ liệu từ View gửi cho controller (không lấy dữ liệu từ csdl)
     public function index(Request $request){
+        // dd($request->keywords);
         $keywords = $request->keywords;
         $listRole = $this->roleService->paginate($this->limit, $keywords);
         $this->data['roles'] = $listRole;
@@ -32,13 +33,6 @@ class RoleController extends Controller
         return $id;
     }
 
-    public function accounts(Request $request){
-        $id = $request->id;
-        if ($id == null)
-            return false;
-        $role =$this->roleService->find($id);
-        dd($role->accounts()->get());
-    }
 
     public function create(Request $request) {
         $request->validate(

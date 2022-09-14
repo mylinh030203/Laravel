@@ -19,7 +19,7 @@ class RoleService
     }
 
     public function getAll() {
-        return $this->role->orderBy('id','asc')->paginate();
+        return $this->role->orderBy('id','asc')->paginate(); //limit=15
     }
 
     public function delete($id) {
@@ -37,12 +37,12 @@ class RoleService
         $role->save();
     }
 
-    public function create($id_account, $role_name) {
-        $roleAccount = new RoleAccount();
-        $roleAccount->id_account = $id_account;
-        $roleAccount->id_role = $this->findByRoleName($role_name)->id;
-        $roleAccount->save();
-    }
+    // public function create($id_account, $role_name) {
+    //     $roleAccount = new RoleAccount();
+    //     $roleAccount->id_account = $id_account;
+    //     $roleAccount->id_role = $this->findByRoleName($role_name)->id;
+    //     $roleAccount->save();
+    // }
 
     public function find($id) {
         return $this->role->find($id);
