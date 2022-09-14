@@ -28,9 +28,10 @@ class RoleController extends Controller
 
     public function delete($id=null) {
         if ($id == null)
-            return false;
+            return redirect(route('admin.role.index'))->with('error', 'Không tìm thấy id cần xóa');
         $this->roleService->delete($id);
         return $id;
+        //index.blade.php.blade.php
     }
 
 

@@ -19,7 +19,7 @@ class RoleService
     }
 
     public function getAll() {
-        return $this->role->orderBy('id','asc')->paginate(); //limit=15
+        return $this->role->orderBy('id','asc')->paginate(); //limit 
     }
 
     public function delete($id) {
