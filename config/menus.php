@@ -21,4 +21,21 @@ return [
             ]
         ],
     ],
+    [
+        'title' => 'Tài khoản',
+        'name' => 'account',
+        'route' => 'login',
+        'children' => [
+            [
+                'title' => 'Đăng Nhập',
+                'name' => 'login',
+                'route' => 'login',
+            ],
+            [
+                'title' => 'Đăng xuất',
+                'name' => 'logout',
+                'route' => 'admin.role.showcreate',
+            ]
+        ],
+    ],
 ];

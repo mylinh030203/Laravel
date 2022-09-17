@@ -12,6 +12,7 @@
     <meta property="og:url" content="https://keenthemes.com/metronic"/>
     <meta property="og:site_name" content="Keenthemes | Metronic"/>
     @include('admin.includes.styles')
+    @yield('css_custom')
 </head>
 <!--end::Head-->
 <!--begin::Body-->

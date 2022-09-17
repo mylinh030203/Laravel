@@ -2,10 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\RoleController;
+use App\Http\Controllers\UserController;
 
 
 Route::prefix('/')->group(function(){
-    Route::get('/login', [RoleController::class, 'index'])->name('login');
+    
+    Route::get('/',function(){
+        return view('user.pages.index');
+    });
+    Route::get('/login', [UserController::class, 'index'])->name('login');
 });
 
 
@@ -20,6 +25,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/detail', [RoleAccountController::class, 'findByIdRole'])->name('admin.role.detail');
         Route::post('/detail', [RoleAccountController::class, 'add'])->name('admin.role.detail.add');
         Route::get('/detail/delete/{id}', [RoleAccountController::class, 'delete'])->name('admin.role.detail.detete');
+        
     });
 
 });
