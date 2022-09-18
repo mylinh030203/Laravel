@@ -5,17 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Account;
 use App\Http\Requests\StoreAccountRequest;
 use App\Http\Requests\UpdateAccountRequest;
-
+use App\Http\Services\AccountService;
 class AccountController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public $data=[];
+    public function __construct(AccountService $accountService)
+    {
+    $this->accountservice = $accountService;
+    }
+
     public function index()
     {
-        //
+       $this->data['accounts']=$this->accountservice->getAll();
+       return view('admin.pages.account.index', $this->data);
     }
 
     /**
@@ -34,9 +36,10 @@ class AccountController extends Controller
      * @param  \App\Http\Requests\StoreAccountRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAccountRequest $request)
+    public function delete($id=null)
     {
-        //
+        $this->accountservice->delete($id);
+        return $id;
     }
 
     /**

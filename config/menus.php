@@ -1,6 +1,27 @@
 <?php
 return [
     [
+        'title' => 'Tài khoản',
+        'name' => 'account',
+        'route' => 'admin.account.index',
+        'children' => [
+            [
+                'title' => 'Danh sách tài khoản',
+                'name' => 'index',
+                'route' => 'admin.account.index',
+            ],
+            [
+                'title' => 'Thêm tài khoản',
+                'name' => 'create',
+                'route' => 'admin.role.showcreate',
+            ],
+            [
+                'title' => 'Sửa tài khoản',
+                'name' => 'edit',
+            ]
+        ],
+    ],
+    [
         'title' => 'Phân quyền',
         'name' => 'role',
         'route' => 'admin.role.index',

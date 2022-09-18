@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AccountController;
 
 
 Route::prefix('/')->group(function(){
@@ -25,7 +26,11 @@ Route::prefix('admin')->group(function(){
         Route::get('/detail', [RoleAccountController::class, 'findByIdRole'])->name('admin.role.detail');
         Route::post('/detail', [RoleAccountController::class, 'add'])->name('admin.role.detail.add');
         Route::get('/detail/delete/{id}', [RoleAccountController::class, 'delete'])->name('admin.role.detail.detete');
-        
+    });
+    Route::prefix('account')->group(function(){
+        Route::get('/', [AccountController::class, 'index'])->name('admin.account.index');
+        Route::get('/delete/{id}', [AccountController::class, 'delete'])->name('admin.account.detete');
+       
     });
 
 });

@@ -11,7 +11,7 @@ class RoleController extends Controller
 {
     public $data = [];
 
-    protected $limit = 1;
+    protected $limit = 5;
 
     public function __construct(RoleService $roleService)
     {
