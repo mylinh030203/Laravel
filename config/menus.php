@@ -13,7 +13,7 @@ return [
             [
                 'title' => 'Thêm tài khoản',
                 'name' => 'create',
-                'route' => 'admin.role.showcreate',
+                'route' => 'admin.account.showcreate',
             ],
             [
                 'title' => 'Sửa tài khoản',

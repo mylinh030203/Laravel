@@ -6,12 +6,16 @@ use App\Models\Account;
 use App\Http\Requests\StoreAccountRequest;
 use App\Http\Requests\UpdateAccountRequest;
 use App\Http\Services\AccountService;
+use App\Http\Services\RoleService;
+use Illuminate\Http\Request;
+
 class AccountController extends Controller
 {
     public $data=[];
-    public function __construct(AccountService $accountService)
+    public function __construct(AccountService $accountService, RoleService $roleService)
     {
     $this->accountservice = $accountService;
+    $this->roleService = $roleService;
     }
 
     public function index()
@@ -25,9 +29,28 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'username' => 'required|unique:accounts|max:15|alpha_dash',
+                'password' => 'required|min:6',
+            ],
+            [
+                'username.required' => 'Vui lòng nhập tên tài khoản',
+                'username.unique' => 'Tên tài khoản này đã tồn tại',
+                'username.max' => 'Không được quá 15 ký tự',
+                'username.alpha_dash' => 'Không chứa ký tự đặc biệt',
+                'password.required' => 'Vui lòng nhập mật khẩu',
+                'password.min' => 'Mật khẩu ít nhất phải 6 ký tự',
+            ]
+        );
+        $account = new Account();
+        $account->username = $request->username;
+        $account->password = $request->password;
+        $account->role_id = $request->role_id;
+        $this->accountservice->add($account);
+        return redirect(route('admin.account.index'))->with('info','Thêm thành công');
     }
 
     /**
@@ -48,9 +71,18 @@ class AccountController extends Controller
      * @param  \App\Models\Account  $account
      * @return \Illuminate\Http\Response
      */
-    public function show(Account $account)
+    public function showCreate()
     {
-        //
+        $this->data['Roles']= $this->roleService->getAll();
+        return view('admin.pages.account.create',$this->data);
+    }
+
+    public function login(Request $request){
+        if($this->accountservice->checkLogin($request->username, $request->password)){
+            return redirect(route('user.login.index'))->with('info','Đăng nhập thành công');
+        }else{
+            return redirect(route('login'))->with('error','Đăng nhập thất bại');
+        }
     }
 
     /**

@@ -10,8 +10,9 @@ Route::prefix('/')->group(function(){
     
     Route::get('/',function(){
         return view('user.pages.index');
-    });
+    })->name('user.login.index');
     Route::get('/login', [UserController::class, 'index'])->name('login');
+    Route::post('/login', [AccountController::class, 'login'])->name('user.login.login');
 });
 
 
@@ -30,7 +31,8 @@ Route::prefix('admin')->group(function(){
     Route::prefix('account')->group(function(){
         Route::get('/', [AccountController::class, 'index'])->name('admin.account.index');
         Route::get('/delete/{id}', [AccountController::class, 'delete'])->name('admin.account.detete');
-       
+        Route::get('/create', [AccountController::class, 'showCreate'])->name('admin.account.showcreate');
+        Route::post('/create', [AccountController::class, 'create'])->name('admin.account.create');
     });
 
 });

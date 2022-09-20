@@ -58,5 +58,13 @@ class AccountService
         }
         return $account->paginate($limit)->withQueryString();
     }
+    public function checkLogin($username, $password){
+        $account = $this->account;
+        if($account->where('username', '=',  $username)->where('password', '=',  $password)->first()!=null){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 }
