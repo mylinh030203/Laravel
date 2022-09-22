@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Account;
+use Illuminate\Http\Request;
+use App\Http\Services\RoleService;
+use App\Http\Services\UserService;
+use App\Http\Services\AccountService;
 use App\Http\Requests\StoreAccountRequest;
 use App\Http\Requests\UpdateAccountRequest;
-use App\Http\Services\AccountService;
-use App\Http\Services\RoleService;
-use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
     public $data=[];
-    public function __construct(AccountService $accountService, RoleService $roleService)
+    public function __construct(AccountService $accountService, RoleService $roleService, UserService $userService)
     {
     $this->accountservice = $accountService;
     $this->roleService = $roleService;
+    $this->userService = $userService;
     }
 
     public function index()
@@ -50,6 +53,9 @@ class AccountController extends Controller
         $account->password = $request->password;
         $account->role_id = $request->role_id;
         $this->accountservice->add($account);
+        $user = new User();
+        $user->account_id = $account->id;
+        $this->userService->add($user);
         return redirect(route('admin.account.index'))->with('info','Thêm thành công');
     }
 
