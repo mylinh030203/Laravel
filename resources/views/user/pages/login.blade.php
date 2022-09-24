@@ -5,7 +5,17 @@
 @section('title_card')
 Login
 @endsection
+@section('name_user')
+    @if (auth()->user() != null)
+        {{ auth()->user()->fullname }}
+    @endif
+@endsection
 
+@section('email_user')
+@if (auth()->user() != null)
+{{ auth()->user()->email }}
+@endif
+@endsection
 @section('css_custom')
 
 

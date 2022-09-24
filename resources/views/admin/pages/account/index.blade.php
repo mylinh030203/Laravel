@@ -4,13 +4,16 @@
 @endsection
 
 @section('name_user')
-    {{-- {{(auth()->user()->account->username)}} --}}
-    Name User
 
+@if (auth()->user() != null)
+        {{ auth()->user()->fullname }}
+    @endif
 @endsection
 
 @section('email_user')
-    Email user
+@if (auth()->user() != null)
+{{ auth()->user()->email }}
+@endif
 @endsection
 
 @section('role_user')

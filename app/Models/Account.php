@@ -15,4 +15,7 @@ class Account extends Model
     public function getRole(){
         return $this->hasOne(Role::class, 'id', 'role_id');
     }
+    public function getUser(){
+        return $this->hasOne(User::class, 'account_id', 'id');
+    }
 }

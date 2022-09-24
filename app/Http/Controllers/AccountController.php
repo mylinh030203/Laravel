@@ -10,6 +10,7 @@ use App\Http\Services\UserService;
 use App\Http\Services\AccountService;
 use App\Http\Requests\StoreAccountRequest;
 use App\Http\Requests\UpdateAccountRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
@@ -84,7 +85,11 @@ class AccountController extends Controller
     }
 
     public function login(Request $request){
-        if($this->accountservice->checkLogin($request->username, $request->password)){
+        $account = $this->accountservice->checkLogin($request->username, $request->password);
+        if($account != null){
+            $user = $account->getUser;
+            //Login authencation
+            auth()->login($user);
             return redirect(route('user.login.index'))->with('info','Đăng nhập thành công');
         }else{
             return redirect(route('login'))->with('error','Đăng nhập thất bại');

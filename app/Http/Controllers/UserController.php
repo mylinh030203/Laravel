@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index(){ 
+        auth()->logout();
         return view('user.pages.login');
     }
     

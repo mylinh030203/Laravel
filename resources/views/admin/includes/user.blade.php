@@ -5,7 +5,7 @@
         <div class="menu-content d-flex align-items-center px-3">
             <!--begin::Avatar-->
             <div class="symbol symbol-50px me-5">
-                <img alt="Logo" src="{{(auth()->user() != null) ? url(auth()->user()->url_avata) : ''}}" />
+                <img alt="Logo" src="{{(auth()->user() != null) ? url(auth()->user()->fullname) : ''}}" />
             </div>
             <!--end::Avatar-->
             <!--begin::Username-->
@@ -29,7 +29,7 @@
     <!--begin::Menu item-->
     <div class="menu-item px-5">
         @if(auth()->user() != null)
-            <a href="{{route('user.profile.view')}}/{{auth()->user()->account_id}}" class="menu-link px-5">My Profile</a>
+            <a href="{{route('admin.role.index')}}/{{auth()->user()->account_id}}" class="menu-link px-5">My Profile</a>
         @endif
     </div>
     <!--end::Menu item-->
