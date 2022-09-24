@@ -12,12 +12,10 @@ class checkAdmin
     }
     public function handle(Request $request, Closure $next)
     {
-        if ($this->checkAdmin() == false)
-            return redirect(route('trangchu'))->with('thongbao', 'Bạn không phải admin');;
+        if (auth()->user()==null)
+            return redirect(route('login'))->with('error', 'Bạn cần login');
+        if(auth()->user()->getAccount->getRole->role_name != 'admin')
+            return redirect(route('user.login.index'))->with('error', 'Bạn không phải admin');
         return $next($request);
-    }
-
-    public function checkAdmin(){
-        return false;
     }
 }

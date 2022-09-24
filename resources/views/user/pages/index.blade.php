@@ -16,7 +16,10 @@
 @endsection
 
 @section('role_user')
-    
+    @if (auth()->user() != null)
+    <span class=" my-1 text-center
+    badge badge-{{auth()->user()->getAccount->getRole->color}}"> {{auth()->user()->getAccount->getRole->role_name}}</span> 
+    @endif
 @endsection
 
 @section('css_custom')

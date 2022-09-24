@@ -16,7 +16,7 @@ Route::prefix('/')->group(function(){
 });
 
 
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->middleware('checkAdmin')->group(function(){
     Route::prefix('role')->group(function(){
         Route::get('/', [RoleController::class, 'index'])->name('admin.role.index');
         Route::get('/create', [RoleController::class, 'showCreate'])->name('admin.role.showcreate');
