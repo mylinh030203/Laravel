@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TypeProductController;
 
 
 Route::prefix('/')->group(function(){
@@ -33,6 +35,20 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function(){
         Route::get('/delete/{id}', [AccountController::class, 'delete'])->name('admin.account.detete');
         Route::get('/create', [AccountController::class, 'showCreate'])->name('admin.account.showcreate');
         Route::post('/create', [AccountController::class, 'create'])->name('admin.account.create');
+    });
+    Route::prefix('product')->group(function(){
+        Route::get('/', [ProductController::class, 'index'])->name('admin.product.index');
+        Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('admin.product.detete');
+        Route::get('/create', [ProductController::class, 'showCreate'])->name('admin.product.showcreate');
+        Route::post('/create', [ProductController::class, 'create'])->name('admin.product.create');
+    });
+    Route::prefix('typeProduct')->group(function(){
+        Route::get('/', [TypeProductController::class, 'index'])->name('admin.type_product.index');
+        Route::get('/delete/{id}', [TypeProductController::class, 'delete'])->name('admin.type_product.detete');
+        Route::get('/create', [TypeProductController::class, 'showCreate'])->name('admin.type_product.showcreate');
+        Route::post('/create', [TypeProductController::class, 'create'])->name('admin.type_product.create');
+        Route::get('/edit/{id?}', [TypeProductController::class, 'showEdit'])->name('admin.type_product.showedit');
+        Route::post('/edit/{id}', [TypeProductController::class, 'edit'])->name('admin.type_product.edit');
     });
 
 });
