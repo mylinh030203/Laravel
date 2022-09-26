@@ -5,18 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Services\ProductService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public $data = [];
+    public function __construct(ProductService $productService){
+        $this->productService = $productService;
+    }
     public function index()
     {
-        //
+        $this->data['products'] = $this->productService->getAll();
+        return view('admin.pages.product.index', $this->data);
     }
 
     /**
@@ -55,7 +56,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function showEdit(Product $product)
     {
         //
     }
@@ -89,8 +90,9 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function delete($id=null)
     {
-        //
+        $this->productService->delete($id);
+        return $id;
     }
 }

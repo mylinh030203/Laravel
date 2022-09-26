@@ -75,6 +75,8 @@ class TypeProductController extends Controller
 
     public function edit($id, Request $request) {
         $data = ['name'=>$request->typeName, 'description'=>$request->description];
+        // $data['name'] = $request->typeName;
+        // $data['description'] = $request->description;
         $this->typeProductService->update($id, $data);
 
         return redirect(route('admin.type_product.index'))->with('info', 'Cập nhật thành công');

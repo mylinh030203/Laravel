@@ -40,6 +40,7 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function(){
         Route::get('/', [ProductController::class, 'index'])->name('admin.product.index');
         Route::get('/delete/{id}', [ProductController::class, 'delete'])->name('admin.product.detete');
         Route::get('/create', [ProductController::class, 'showCreate'])->name('admin.product.showcreate');
+        Route::get('/edit', [ProductController::class, 'showEdit'])->name('admin.product.showedit');
         Route::post('/create', [ProductController::class, 'create'])->name('admin.product.create');
     });
     Route::prefix('typeProduct')->group(function(){

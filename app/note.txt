@@ -1,0 +1,17 @@
+Cập nhật sản phẩm: Laravel 
+
+id => $product =  $this->productService->find($id);
+data['URL] = $product->URL;
+
+if ($request->hasFile('URL')) {
+            $file = $request->URL;
+            $path = $file->store('images');
+            $file->move(public_path('images'), $path);
+
+            data['URL] = $path;
+}
+
+data['price']= $request->price;
+
+=> cập nhật ảnh: data['URL] = $path
+$this->productService->update($id, data);
