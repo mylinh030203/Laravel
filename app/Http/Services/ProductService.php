@@ -45,7 +45,7 @@ class ProductService
     // }
 
     public function find($id) {
-        return $this->Product->find($id);
+        return $this->product->find($id);
     }
 
 

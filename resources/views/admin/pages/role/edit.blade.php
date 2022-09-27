@@ -4,15 +4,22 @@
 @endsection
 
 @section('name_user')
-    Name user
+    @if (auth()->user() != null)
+        {{ auth()->user()->fullname }}
+    @endif
 @endsection
 
 @section('email_user')
-    Email
+@if (auth()->user() != null)
+{{ auth()->user()->email }}
+@endif
 @endsection
 
 @section('role_user')
-    Admin
+    @if (auth()->user() != null)
+    <span class=" my-1 text-center
+    badge badge-{{auth()->user()->getAccount->getRole->color}}"> {{auth()->user()->getAccount->getRole->role_name}}</span> 
+    @endif
 @endsection
 
 @section('css_custom')

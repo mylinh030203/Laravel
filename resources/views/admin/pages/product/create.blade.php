@@ -1,16 +1,24 @@
 @extends('admin.layouts.main')
 @section('title_page')
-    Create - Account - {{ config('app.name') }}
+    Create - Product - {{ config('app.name') }}
 @endsection
 @section('name_user')
-    Name User
-
+    @if (auth()->user() != null)
+        {{ auth()->user()->fullname }}
+    @endif
 @endsection
+
 @section('email_user')
+@if (auth()->user() != null)
+{{ auth()->user()->email }}
+@endif
 @endsection
 
 @section('role_user')
-    
+    @if (auth()->user() != null)
+    <span class=" my-1 text-center
+    badge badge-{{auth()->user()->getAccount->getRole->color}}"> {{auth()->user()->getAccount->getRole->role_name}}</span> 
+    @endif
 @endsection
 
 @section('css_custom')
@@ -33,50 +41,50 @@
     Create Account
 @endsection
 @section('actions_layout')
-    <a href="{{route('admin.account.index')}}" class="btn btn-primary btn-sm mr-2 mb-2 mb-lg-0">
-        <i class="fa fa-list"></i> List Account
+    <a href="{{route('admin.product.index')}}" class="btn btn-primary btn-sm mr-2 mb-2 mb-lg-0">
+        <i class="fa fa-list"></i> List Product
     </a>
 @endsection
 @section('title_card')
-    Create Account
+    Create Product
 @endsection
 @section('content_card')
     
     <form action="" method="post" enctype="multipart/form-data" class="mt-5 py-5">
         @csrf
         <div class="form-group ">
-            <label for="id">Mã sản phẩm</label>
-            <input type="text" class="form-control" name="id" id="id"  >
+            <label for="type_id">Mã loại sản phẩm</label>
+            <select class="form-control" id="exampleFormControlSelect1" name='type_id'>  
+                @foreach ($typeProducts as $item)
+                <option value='{{ $item->id }}'>{{ $item->name }}</option>
+                @endforeach
+            </select>
+          
         </div>
         <div class="form-group ">
             <label for="name">Tên sản phẩm</label>
             <input type="text" class="form-control" name="name" id="name"  >
         </div>
         <div class="form-group ">
-            <label for="size">Kích thước/viên</label>
-            <input type="text" class="form-control" name="size" id="size">
+            <label for="description">Mô tả</label>
+            <input type="text" class="form-control" name="description" id="description">
         </div>
         <div class="form-group ">
-            <label for="mass">Khối lượng</label>
-            <input type="text" class="form-control" name="mass" id="mass"  >
-        </div>
-        <div class="form-group ">
-            <label for="material">Vật liệu</label>
+            <label for="material">Chất liệu </label>
             <input type="text" class="form-control" name="material" id="material"  >
+        </div>
+        <div class="form-group ">
+            <label for="origin">Xuất xứ</label>
+            <input type="text" class="form-control" name="origin" id="origin"  >
         </div>
         <div class="form-group ">
             <label for="price">Giá</label>
             <input type="text" class="form-control" name="price" id="price"  >
         </div>
     
-        <div class="form-group">
-            <label for="detail">Giới thiệu chi tiết sản phẩm</label>
-            <textarea id="detail" name="detail"></textarea>
-        </div>
-        
             <div class="form-group">
-                <label for="fileToUpload" class="custom-file-label">Image</label>
-                <input type="file" class="form-control" id="fileToUpload" name="fileToUpload" />
+                <label for="URL" class="custom-file-label">Image</label>
+                <input type="file" class="form-control" id="URL" name="URL" />
                 </div>
         <div class="form-group d-flex justify-content-center">
             <input class="btn-success btn" type="submit" value="Upload" name="submit" id="submit">

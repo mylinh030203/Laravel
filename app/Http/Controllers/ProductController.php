@@ -6,13 +6,15 @@ use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Services\ProductService;
+use App\Http\Services\TypeProductService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public $data = [];
-    public function __construct(ProductService $productService){
+    public function __construct(ProductService $productService, TypeProductService $typeProductService){
         $this->productService = $productService;
+        $this->typeProductService = $typeProductService;
     }
     public function index()
     {
@@ -27,16 +29,28 @@ class ProductController extends Controller
      */
     public function showCreate()
     {
-        return View('admin.pages.product.create');
+        $this->data['typeProducts']= $this->typeProductService->getAll();
+        
+        return View('admin.pages.product.create',$this->data);
     }
     public function create(Request $request)
     {
-        if ($request->hasFile('fileToUpload')) {
-            $file = $request->fileToUpload;
+        $product = new Product();
+        $product->type_id = $request->type_id;
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->material = $request->material;
+        $product->origin = $request->origin;
+        $product->price = $request->price;
+        if ($request->hasFile('URL')) {
+            $file = $request->URL;
             $path = $file->store('images');
             $file->move(public_path('images'), $path);
+            $product->URL = $path;
         }
-        return "<img src='/".$path."'>";
+        $this->productService->add($product);
+    return redirect(route('admin.product.index'))->with('info','Thêm thành công');
+        
     }
 
     /**
@@ -56,10 +70,14 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function showEdit(Product $product)
-    {
-        //
+    
+   
+    public function showEdit($id) {
+        $this->data['Product'] = $this->productService->find($id);
+        return view('admin.pages.product.edit', $this->data);
     }
+   
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -67,9 +85,26 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id, Request $request)
     {
-        //
+        $product =  $this->productService->find($id);
+        $data['URL'] = $product->URL;
+
+        if ($request->hasFile('URL')) {
+            $file = $request->URL;
+            $path = $file->store('images');
+            $file->move(public_path('images'), $path);
+
+            $data['URL'] = $path;
+        }
+        // $data['type_id'] = $request->type_id;
+        $data['name'] = $request->name;
+        $data['description'] = $request->description;
+        $data['material'] = $request->material;
+        $data['origin'] = $request->origin;
+        $data['price']= $request->price;
+        $this->productService->update($id, $data);
+        return redirect(route('admin.product.index'))->with('info','Cập nhật thành công');
     }
 
     /**
@@ -83,6 +118,7 @@ class ProductController extends Controller
     {
         //
     }
+    
 
     /**
      * Remove the specified resource from storage.
