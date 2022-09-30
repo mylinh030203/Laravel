@@ -30,7 +30,7 @@
 @endsection
 @section('menu')
     @php
-        $menu_parent = 'account';
+        $menu_parent = 'type_product';
         $menu_child = 'create';
     @endphp
 @endsection

@@ -31,7 +31,7 @@
 @endsection
 @section('menu')
     @php
-        $menu_parent = 'account';
+        $menu_parent = 'type_product';
         $menu_child = 'index';
     @endphp
 @endsection

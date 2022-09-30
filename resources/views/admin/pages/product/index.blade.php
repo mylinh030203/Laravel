@@ -38,7 +38,7 @@
 @endsection
 @section('menu')
     @php
-        $menu_parent = 'role';
+        $menu_parent = 'product';
         $menu_child = 'index';
     @endphp
 @endsection

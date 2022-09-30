@@ -43,7 +43,7 @@ return [
         ],
     ],
     [
-        'title' => 'Tài khoản',
+        'title' => 'Đăng Nhập',
         'name' => 'account',
         'route' => 'login',
         'children' => [
@@ -56,6 +56,40 @@ return [
                 'title' => 'Đăng xuất',
                 'name' => 'logout',
                 'route' => 'admin.role.showcreate',
+            ]
+        ],
+    ],
+    [
+        'title' => 'Sản phẩm',
+        'name' => 'product',
+        'route' => 'product',
+        'children' => [
+            [
+                'title' => 'Danh sách sản phẩm',
+                'name' => 'index',
+                'route' => 'admin.product.index',
+            ],
+            [
+                'title' => 'Thêm sản phẩm',
+                'name' => 'create',
+                'route' => 'admin.product.showcreate',
+            ]
+        ],
+    ],
+    [
+        'title' => 'Loại sản phẩm',
+        'name' => 'type_product',
+        'route' => 'typeProduct',
+        'children' => [
+            [
+                'title' => 'Danh sách loại sản phẩm',
+                'name' => 'index',
+                'route' => 'admin.type_product.index',
+            ],
+            [
+                'title' => 'Thêm sản phẩm',
+                'name' => 'create',
+                'route' => 'admin.type_product.showcreate',
             ]
         ],
     ],
