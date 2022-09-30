@@ -23,6 +23,13 @@
 
 @section('css_custom')
     <link href="{{asset('/admin/assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css"/>
+    <style>
+        img{
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+    </style>
 @endsection
 @section('js_custom')
     <script src="{{asset('/admin/assets/plugins/global/plugins.bundle.js')}}"></script>
@@ -53,12 +60,13 @@
     <form action="" method="post" enctype="multipart/form-data" class="mt-5 py-5">
         @csrf
         <div class="form-group ">
-            {{-- <label for="type_id">Mã loại sản phẩm</label>
-            <select class="form-control" id="exampleFormControlSelect1" name='type_id' >  
-                @foreach ($Product->getAll() as $item)
-                <option value='{{ $item->id }}'>{{ $item->name }}</option>
+            <img src="{{ URL($Product->URL )}}"><br>
+            <label for="type_id">Mã loại sản phẩm</label>
+            <select class="form-control" id="exampleFormControlSelect1" name='type_id'  >  
+                @foreach ($typeProduct as $item)
+                <option value='{{ $item->id }}' {{ ($Product->type_id==$item->id ) ? 'selected' : ''}} >{{ $item->name }}</option>
                 @endforeach
-            </select> --}}
+            </select>
           
         </div>
         <div class="form-group ">

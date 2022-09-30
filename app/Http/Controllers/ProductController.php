@@ -74,6 +74,7 @@ class ProductController extends Controller
    
     public function showEdit($id) {
         $this->data['Product'] = $this->productService->find($id);
+        $this->data['typeProduct'] = $this->typeProductService->getAll();
         return view('admin.pages.product.edit', $this->data);
     }
    
@@ -97,7 +98,7 @@ class ProductController extends Controller
 
             $data['URL'] = $path;
         }
-        // $data['type_id'] = $request->type_id;
+        $data['type_id'] = $request->type_id;
         $data['name'] = $request->name;
         $data['description'] = $request->description;
         $data['material'] = $request->material;
