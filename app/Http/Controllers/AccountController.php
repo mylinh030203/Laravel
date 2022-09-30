@@ -96,27 +96,27 @@ class AccountController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Account  $account
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Account $account)
-    {
-        //
+    public function showEdit($id){
+        $this->data['account'] = $this->accountservice->find($id);
+        $this->data['role'] = $this->roleService->getAll();
+        return view('admin.pages.account.edit', $this->data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateAccountRequest  $request
-     * @param  \App\Models\Account  $account
-     * @return \Illuminate\Http\Response
-     */
+
+    public function edit($id, Request $request)
+    {
+       
+        $data['username'] = $request->username;
+        $data['password'] = $request->password;
+        $data['role_id'] = $request->role_id;
+        $this->accountservice->update($id,$data);
+        return redirect(route('admin.account.index'))->with('info','Cập nhật thành công');
+    }
+
+    
     public function update(UpdateAccountRequest $request, Account $account)
     {
-        //
+        
     }
 
     /**

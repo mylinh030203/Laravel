@@ -22,7 +22,7 @@ Login
 @endsection
 @section('menu')
     @php
-        $menu_parent = 'account';
+        $menu_parent = 'Login';
         $menu_child = 'login';
     @endphp
 @endsection

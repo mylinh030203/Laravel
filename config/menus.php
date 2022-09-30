@@ -44,7 +44,7 @@ return [
     ],
     [
         'title' => 'Đăng Nhập',
-        'name' => 'account',
+        'name' => 'Login',
         'route' => 'login',
         'children' => [
             [

@@ -35,6 +35,8 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function(){
         Route::get('/delete/{id}', [AccountController::class, 'delete'])->name('admin.account.detete');
         Route::get('/create', [AccountController::class, 'showCreate'])->name('admin.account.showcreate');
         Route::post('/create', [AccountController::class, 'create'])->name('admin.account.create');
+        Route::get('/edit/{id?}', [AccountController::class, 'showEdit'])->name('admin.account.showedit');
+        Route::post('/edit/{id}', [AccountController::class, 'edit'])->name('admin.account.edit');
     });
     Route::prefix('product')->group(function(){
         Route::get('/', [ProductController::class, 'index'])->name('admin.product.index');
