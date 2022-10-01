@@ -5,7 +5,7 @@
 
 @section('name_user')
     @if(auth()->user() != null)
-        {{(auth()->user()->account->username)}}
+        {{ auth()->user()->fullname }}
     @endif
 @endsection
 
@@ -16,10 +16,9 @@
 @endsection
 
 @section('role_user')
-    @if(auth()->user() != null)
-        @foreach(auth()->user()->account->roles->take(4) as $role)
-            <span class="badge badge-light-{{$role->color}} fw-bold fs-8 py-1 mx-auto">{{$role->role_name}}</span>
-        @endforeach
+    @if (auth()->user() != null)
+    <span class=" my-1 text-center
+    badge badge-{{auth()->user()->getAccount->getRole->color}}"> {{auth()->user()->getAccount->getRole->role_name}}</span> 
     @endif
 @endsection
 
@@ -78,10 +77,10 @@
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-body text-center">
-                            <img src="avata" alt="avatar"
+                            <img src="../images/nAzWFo3rZd5tAEEIFQkbesbpDeJWkQbCHlenw0tz.jpg" alt="avatar"
                                  class="rounded-circle img-fluid" style="width: 150px;">
-                            <h5 class="my-3">UserName</h5>
-                            <h6><span class="badge badge-danger mx-1">Admin</span>Mo ta role</h6>
+                            <h5 class="my-3">{{ $user->getAccount->username }}</h5>
+                            <h6><span class="badge badge-danger mx-1">{{ $user->getAccount->getRole->role_name }}</span>{{ $user->getAccount->getRole->description }}</h6>
                             <div class="d-flex justify-content-center mb-2">
                                 <button type="button" class="btn btn-primary">Follow</button>
                                 <button type="button" class="btn btn-outline-primary ms-1">Message</button>
@@ -123,7 +122,7 @@
                                     <p class="mb-0">Họ tên</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">Phan Duc Hai</p>
+                                    <p class="text-muted mb-0">{{ $user->fullname }}</p>
                                 </div>
                             </div>
                             <hr>
@@ -132,7 +131,7 @@
                                     <p class="mb-0">Email</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">Email</p>
+                                    <p class="text-muted mb-0">{{ $user->email }}</p>
                                 </div>
                             </div>
                             <hr>
