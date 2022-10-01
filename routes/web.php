@@ -15,7 +15,12 @@ Route::prefix('/')->group(function(){
     })->name('user.login.index');
     Route::get('/login', [UserController::class, 'index'])->name('login');
     Route::post('/login', [AccountController::class, 'login'])->name('user.login.login');
+
+    Route::prefix('/profile')->group(function(){
+       Route::get('/{id?}', [UserController::class, 'profile'])->name('user.profile.index'); 
+    });
 });
+
 
 
 Route::prefix('admin')->middleware('checkAdmin')->group(function(){
