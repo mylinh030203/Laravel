@@ -77,10 +77,10 @@
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-body text-center">
-                            <img src="../images/nAzWFo3rZd5tAEEIFQkbesbpDeJWkQbCHlenw0tz.jpg" alt="avatar"
+                            <img src="{{ url($user->URL) }}" alt="avatar"
                                  class="rounded-circle img-fluid" style="width: 150px;">
                             <h5 class="my-3">{{ $user->getAccount->username }}</h5>
-                            <h6><span class="badge badge-danger mx-1">{{ $user->getAccount->getRole->role_name }}</span>{{ $user->getAccount->getRole->description }}</h6>
+                            <h6><span class="badge badge-{{ $user->getAccount->getRole->color }} mx-1">{{ $user->getAccount->getRole->role_name }}</span>{{ $user->getAccount->getRole->description }}</h6>
                             <div class="d-flex justify-content-center mb-2">
                                 <button type="button" class="btn btn-primary">Follow</button>
                                 <button type="button" class="btn btn-outline-primary ms-1">Message</button>
