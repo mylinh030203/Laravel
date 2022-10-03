@@ -18,6 +18,8 @@ Route::prefix('/')->group(function(){
 
     Route::prefix('/profile')->group(function(){
        Route::get('/{id?}', [UserController::class, 'profile'])->name('user.profile.index'); 
+       Route::get('edit/{id?}', [UserController::class, 'showEdit'])->name('user.profile.showedit');
+       Route::post('edit/{id?}', [UserController::class, 'edit'])->name('user.profile.edit');
     });
 });
 

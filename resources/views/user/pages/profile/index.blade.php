@@ -48,7 +48,7 @@
 
 @section('actions_layout')
     
-    <a href="" class="btn btn-primary btn-sm mr-2 mb-2 mb-lg-0">
+    <a href="{{ route('user.profile.showedit') }}/{{ auth()->user()->id }}" class="btn btn-primary btn-sm mr-2 mb-2 mb-lg-0">
         <i class="fa fa-edit"></i> Sửa thông tin
     </a>
    
