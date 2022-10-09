@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TypeProductController;
-
+use App\Http\Controllers\API\TestAPIController;
 
 Route::prefix('/')->group(function(){
     
@@ -21,6 +21,12 @@ Route::prefix('/')->group(function(){
        Route::get('edit/{id?}', [UserController::class, 'showEdit'])->name('user.profile.showedit');
        Route::post('edit/{id?}', [UserController::class, 'edit'])->name('user.profile.edit');
     });
+    Route::prefix('/testAPI')->group(function(){
+        Route::get('/', [TestAPIController::class, 'index'])->name('user.APITest.index'); 
+        Route::post('/', [TestAPIController::class, 'search'])->name('user.APITest.search'); 
+        
+     });
+
 });
 
 

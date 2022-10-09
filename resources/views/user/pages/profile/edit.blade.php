@@ -57,7 +57,7 @@
     Edit User
 @endsection
 @section('content_card')
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group ">
             <img src="{{ URL($users->URL )}}"><br>

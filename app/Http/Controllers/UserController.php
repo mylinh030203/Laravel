@@ -28,6 +28,9 @@ class UserController extends Controller
     public function showEdit($id){
         $this->data['users'] = $this->userService->find($id);
         $this->data['account'] = $this->accountService->getAll();
+        if($id!=auth()->user()->id){
+            return redirect(route('user.profile.index', ['id' => auth()->user()->id]))->with('warning','Bạn không có quyền sửa'); 
+        }
         return view('user.pages.profile.edit', $this->data);
     }
 
@@ -51,9 +54,9 @@ class UserController extends Controller
         
         
         $data['address']= $request->address;
-        dd($request->all());
+        // dd($request->all());
         $this->userService->update($id, $data);
-        return redirect(route('user.profile.index'))->with('info','Cập nhật thành công');
+        return redirect(route('user.profile.index', ['id' => $id]))->with('info','Cập nhật thành công');
     }
   
 }

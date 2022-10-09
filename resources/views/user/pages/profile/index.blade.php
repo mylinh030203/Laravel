@@ -47,10 +47,13 @@
 @endsection
 
 @section('actions_layout')
-    
+    @if (auth()->user()->id==$user->id)
+        
     <a href="{{ route('user.profile.showedit') }}/{{ auth()->user()->id }}" class="btn btn-primary btn-sm mr-2 mb-2 mb-lg-0">
         <i class="fa fa-edit"></i> Sửa thông tin
-    </a>
+    </a> 
+    @endif
+    
    
 @endsection
 
