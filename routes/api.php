@@ -1,19 +1,15 @@
 <?php
 
+use App\Http\Controllers\API\AccountAPIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+Route::prefix('/')->group(function(){
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::prefix('/account')->group(function(){
+       Route::get('/', [AccountAPIController::class, 'index'])->name('API.Account.index'); 
+       Route::get('/{id?}', [AccountAPIController::class, 'find'])->name('API.Account.find');
+       Route::get('/delete/{id?}', [AccountAPIController::class, 'delete'])->name('API.Account.delete');
+       Route::post('/create', [AccountAPIController::class, 'add'])->name('API.Account.add');
+    });
 });

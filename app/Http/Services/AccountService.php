@@ -24,7 +24,10 @@ class AccountService
 
     public function delete($id) {
         $account = $this->account->find($id);
+        if ($account == null)
+            return false;
         $account->delete();
+        return true;
     }
 
     public function update($id, $data) {
