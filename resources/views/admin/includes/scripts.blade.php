@@ -29,6 +29,7 @@
                 toastr.info(result);
         }
     };
+    
     //handle on click delete-btn
     $(document).on("click", ".delete-btn", function () {
         var row = $(this).closest("tr");

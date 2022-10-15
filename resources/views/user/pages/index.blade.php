@@ -1,92 +1,122 @@
-@extends('admin.layouts.main')
-@section('title_page')
-    Home - {{ config('app.name') }}
-@endsection
+@extends('user.layouts.main')
 
-@section('name_user')
-    @if (auth()->user() != null)
-        {{ auth()->user()->fullname }}
-    @endif
-@endsection
-
-@section('email_user')
-@if (auth()->user() != null)
-{{ auth()->user()->email }}
-@endif
-@endsection
-
-@section('role_user')
-    @if (auth()->user() != null)
-    <span class=" my-1 text-center
-    badge badge-{{auth()->user()->getAccount->getRole->color}}"> {{auth()->user()->getAccount->getRole->role_name}}</span> 
-    @endif
-@endsection
-
-@section('css_custom')
-    <link href="{{asset('/admin/assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css"/>
-@endsection
-@section('js_custom')
-    <script src="{{asset('/admin/assets/plugins/global/plugins.bundle.js')}}"></script>
-
-@endsection
-@section('menu')
-    @php
-        $menu_parent = 'role1';
-        $menu_child = 'edit';
-    @endphp
-@endsection
-@section('title_component')
-    Home
-@endsection
-@section('title_layout')
-    Home
-@endsection
-@section('actions_layout')
-    <a href="{{route('admin.role.index')}}" class="btn btn-primary btn-sm mr-2 mb-2 mb-lg-0">
-        <i class="fa fa-list"></i> List Role
-    </a>
-@endsection
-@section('title_card')
+@section('title')
     Home
 @endsection
 
-@section('onload')
-    @if ($message = Session::get('info'))
-        onload="abc('{{$message}}' , 'success')"
-    @endif
-    @if ($message = Session::get('error'))
-        onload="abc('{{$message}}' , 'danger')"
-    @endif
-@endsection
+@section('content')
+<div class="products-catagories-area clearfix">
+    <div class="amado-pro-catagory clearfix">
 
-@section('content_card')
-    Hello user
-@endsection
-
-@section('footer_card')
-
-@endsection
-@section('content_layout')
-    <!--begin::Card-->
-    <div class="card shadow-sm card-bordered">
-        <div class="card-header collapsible cursor-pointer rotate" data-bs-toggle="collapse"
-             data-bs-target="#kt_docs_card_collapsible">
-            <h3 class="card-title">@yield('title_card')</h3>
-            <div class="card-toolbar rotate-180">
-                <span class="svg-icon svg-icon-1">
-                   <i class="fa fa-angle-down"></i>
-                </span>
-            </div>
+        <!-- Single Catagory -->
+        <div class="single-products-catagory clearfix">
+            <a href="shop.html">
+                <img src="{{ url('/user_asset/img/bg-img/1.jpg') }}" alt="">
+                <!-- Hover Content -->
+                <div class="hover-content">
+                    <div class="line"></div>
+                    <p>From $180</p>
+                    <h4>Modern Chair</h4>
+                </div>
+            </a>
         </div>
-        <div id="kt_docs_card_collapsible" class="collapse show">
-            <div class="card-body">
-                @yield('content_card')
-            </div>
-            <div class="card-footer">
-                @yield('footer_card')
-            </div>
+
+        <!-- Single Catagory -->
+        <div class="single-products-catagory clearfix">
+            <a href="shop.html">
+                <img src="{{ url('/user_asset/img/bg-img/2.jpg') }}" alt="">
+                <!-- Hover Content -->
+                <div class="hover-content">
+                    <div class="line"></div>
+                    <p>From $180</p>
+                    <h4>Modern Chair</h4>
+                </div>
+            </a>
+        </div>
+        <!-- Single Catagory -->
+        <div class="single-products-catagory clearfix">
+            <a href="shop.html">
+                <img src="{{ url('/user_asset/img/bg-img/3.jpg') }}" alt="">
+                <!-- Hover Content -->
+                <div class="hover-content">
+                    <div class="line"></div>
+                    <p>From $180</p>
+                    <h4>Modern Chair</h4>
+                </div>
+            </a>
+        </div>
+        <!-- Single Catagory -->
+        <div class="single-products-catagory clearfix">
+            <a href="shop.html">
+                <img src="{{ url('/user_asset/img/bg-img/4.jpg') }}" alt="">
+                <!-- Hover Content -->
+                <div class="hover-content">
+                    <div class="line"></div>
+                    <p>From $180</p>
+                    <h4>Modern Chair</h4>
+                </div>
+            </a>
+        </div>
+        <!-- Single Catagory -->
+        <div class="single-products-catagory clearfix">
+            <a href="shop.html">
+                <img src="{{ url('/user_asset/img/bg-img/5.jpg') }}" alt="">
+                <!-- Hover Content -->
+                <div class="hover-content">
+                    <div class="line"></div>
+                    <p>From $180</p>
+                    <h4>Modern Chair</h4>
+                </div>
+            </a>
+        </div>
+        <!-- Single Catagory -->
+        <div class="single-products-catagory clearfix">
+            <a href="shop.html">
+                <img src="{{ url('/user_asset/img/bg-img/6.jpg') }}" alt="">
+                <!-- Hover Content -->
+                <div class="hover-content">
+                    <div class="line"></div>
+                    <p>From $180</p>
+                    <h4>Modern Chair</h4>
+                </div>
+            </a>
+        </div>
+        <!-- Single Catagory -->
+        <div class="single-products-catagory clearfix">
+            <a href="shop.html">
+                <img src="{{ url('/user_asset/img/bg-img/7.jpg') }}" alt="">
+                <!-- Hover Content -->
+                <div class="hover-content">
+                    <div class="line"></div>
+                    <p>From $180</p>
+                    <h4>Modern Chair</h4>
+                </div>
+            </a>
+        </div>
+        <!-- Single Catagory -->
+        <div class="single-products-catagory clearfix">
+            <a href="shop.html">
+                <img src="{{ url('/user_asset/img/bg-img/8.jpg') }}" alt="">
+                <!-- Hover Content -->
+                <div class="hover-content">
+                    <div class="line"></div>
+                    <p>From $180</p>
+                    <h4>Modern Chair</h4>
+                </div>
+            </a>
+        </div>
+        <!-- Single Catagory -->
+        <div class="single-products-catagory clearfix">
+            <a href="shop.html">
+                <img src="{{ url('/user_asset/img/bg-img/9.jpg') }}" alt="">
+                <!-- Hover Content -->
+                <div class="hover-content">
+                    <div class="line"></div>
+                    <p>From $180</p>
+                    <h4>Modern Chair</h4>
+                </div>
+            </a>
         </div>
     </div>
-    <!--end::Card-->
+</div>
 @endsection
-
