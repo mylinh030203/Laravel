@@ -6,13 +6,14 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TypeProductController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\API\TestAPIController;
 
 Route::prefix('/')->group(function(){
     
     Route::get('/',function(){
-        return view('user.pages.index');
-    })->name('user.login.index');
+        return view('user.pages.index');})->name('user.login.index');
+    Route::get('/shop', [ShopController::class, 'index']);
     Route::get('/login', [UserController::class, 'index'])->name('login');
     Route::post('/login', [AccountController::class, 'login'])->name('user.login.login');
 
