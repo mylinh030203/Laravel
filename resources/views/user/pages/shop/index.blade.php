@@ -160,7 +160,7 @@
                     <div class="product-meta-data">
                         <div class="line"></div>
                         <p class="product-price">{{number_format($item->price, 0, '', ',')}} VND</p>
-                        <a href="product-details.html">
+                        <a href="{{ route('user.shop.detail', ['id'=>$item->id]) }}">
                             <h6>{{ $item->name }}</h6>
                         </a>
                     </div>

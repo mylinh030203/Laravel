@@ -12,10 +12,12 @@ use Illuminate\Http\Request;
 class ShopController extends Controller
 {
     public $data = [];
-    public function __construct(ProductService $productService){
-        $this->productService = $productService;
-        
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;    
     }
+    
     public function index()
     {
         $this->data['products'] = $this->productService->getAll();
@@ -23,5 +25,9 @@ class ShopController extends Controller
         return view('user.pages.shop.index', $this->data);
     }
 
+    public function detail($id = null){
+        $this->data['product'] = $this->productService->find($id);
+        return view('user.pages.shop.detail', $this->data);
+    }
 
 }

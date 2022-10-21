@@ -12,8 +12,11 @@ use App\Http\Controllers\API\TestAPIController;
 Route::prefix('/')->group(function(){
     
     Route::get('/',function(){
-        return view('user.pages.index');})->name('user.login.index');
-    Route::get('/shop', [ShopController::class, 'index']);
+        return view('user.pages.index');})->name('user.home.index');
+    Route::prefix('/shop')->group(function(){
+        Route::get('/', [ShopController::class, 'index'])->name('user.shop.index');
+        Route::get('/detail/{id?}',[ShopController::class, 'detail' ])->name('user.shop.detail');
+    });
     Route::get('/login', [UserController::class, 'index'])->name('login');
     Route::post('/login', [AccountController::class, 'login'])->name('user.login.login');
 
