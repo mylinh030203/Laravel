@@ -7,6 +7,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TypeProductController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\API\TestAPIController;
 
 Route::prefix('/')->group(function(){
@@ -16,6 +17,10 @@ Route::prefix('/')->group(function(){
     Route::prefix('/shop')->group(function(){
         Route::get('/', [ShopController::class, 'index'])->name('user.shop.index');
         Route::get('/detail/{id?}',[ShopController::class, 'detail' ])->name('user.shop.detail');
+    });
+    Route::middleware('auth')->prefix('/cart')->group(function(){
+        Route::get('/', [CartController::class, 'index'])->name('user.cart.index');
+        // Route::get('/detail/{id?}',[ShopController::class, 'detail' ])->name('user.shop.detail');
     });
     Route::get('/login', [UserController::class, 'index'])->name('login');
     Route::post('/login', [AccountController::class, 'login'])->name('user.login.login');

@@ -90,7 +90,7 @@ class AccountController extends Controller
             $user = $account->getUser;
             //Login authencation
             auth()->login($user);
-            return redirect(route('user.login.index'))->with('info','Đăng nhập thành công');
+            return redirect(route('user.home.index'))->with('info','Đăng nhập thành công');
         }else{
             return redirect(route('login'))->with('error','Đăng nhập thất bại');
         }

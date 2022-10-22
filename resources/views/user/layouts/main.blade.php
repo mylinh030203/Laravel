@@ -18,6 +18,7 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="{{ asset('/user_asset/css/core-style.css') }}">
     <link rel="stylesheet" href="{{ asset('/user_asset/style.css') }}">
+    @yield('css')
 
 </head>
 
@@ -73,7 +74,7 @@
                     <li class="active"><a href="{{ route('user.home.index') }}">Home</a></li>
                     <li><a href="{{ route('user.shop.index')}}">Shop</a></li>
                     <li><a href="product-details.html">Product</a></li>
-                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="{{ route('user.cart.index')}}">Cart</a></li>
                     <li><a href="checkout.html">Checkout</a></li>
                 </ul>
             </nav>
