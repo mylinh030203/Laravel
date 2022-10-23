@@ -13,6 +13,57 @@
 </style>
 @endsection
 
+@section('js_custom')
+<script>
+    function plush(id) {
+        let quantity = 1;
+        console.log(quantity)
+        // $.ajax({
+        //     url: "http://127.0.0.1:8000/api/cart/change",
+        //     type: "GET",
+        //     data: [
+        //         "id":2,
+        //         "quantity":10
+        //     ],
+        //     // success: function(data) {
+        //     //     console.log(data)
+        //     // }
+        // })   
+    }
+    $(document).on("click", ".changePlush", function () {
+        var id = $(this).attr("data-id");
+        console.log("Hello", id)
+        $.ajax({
+            url: "http://127.0.0.1:8000/api/cart/change",
+            type: "GET",
+            data: {
+                id: id,
+                quantity: 1
+            },
+            success: function(data) {
+                window.location = "";
+            }
+        })   
+    });
+
+    $(document).on("click", ".changeSub", function () {
+        var id = $(this).attr("data-id");
+        console.log("Hello", id)
+        $.ajax({
+            url: "http://127.0.0.1:8000/api/cart/change",
+            type: "GET",
+            data: {
+                id: id,
+                quantity: -1
+            },
+            success: function(data) {
+                window.location = "";
+            }
+        })   
+    });
+</script>
+@endsection
+
 @section('content')
 <div class="cart-table-area section-padding-100">
     <div class="container-fluid">
@@ -51,9 +102,9 @@
                                     <div class="qty-btn d-flex">
                                         <p>Qty</p>
                                         <div class="quantity">
-                                            <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                            <span class="qty-minus changeSub" data-id="{{$item->id}}" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                             <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="{{ $item->quantity }}">
-                                            <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                            <span class="qty-plus changePlush" data-id="{{$item->id}}"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                         </div>
                                     </div>
                                 </td>

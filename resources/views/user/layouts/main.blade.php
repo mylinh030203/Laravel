@@ -192,7 +192,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="{{ asset('/user_asset/js/plugins.js') }}"></script>
     <!-- Active js -->
     <script src="{{ asset('/user_asset/js/active.js') }}"></script>
-
+    @yield('js_custom')
 </body>
 
 </html>
