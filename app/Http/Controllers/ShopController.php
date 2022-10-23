@@ -36,4 +36,6 @@ class ShopController extends Controller
         return view('user.pages.shop.detail', $this->data);
     }
 
+    
+
 }

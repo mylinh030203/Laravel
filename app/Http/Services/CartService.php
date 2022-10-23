@@ -30,10 +30,9 @@ class CartService
         return $this->cart->find($id);
     }
 
-    public function add($data) {
-        $cart = $data;
-        $cart->save();
-    }
+    
+
+    
 
     // public function create($id_cart, $cart_name) {
     //     $cartcart = new cartcart();
@@ -79,5 +78,22 @@ class CartService
         return $cart;
     }
 
+    public function checkExitProduct($id_product){
+        foreach($this->getAll() as $item){
+           if( $item->getProduct->id == $id_product){
+                return $item;
+                break;
+           }
+                
+            
+            
+        }
+        return null;
+    }
+
+    public function add($data) {
+        $cart = $data;
+        $cart->save();
+    }
 
 }

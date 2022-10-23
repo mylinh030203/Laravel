@@ -34,15 +34,34 @@ class CartController extends Controller
     public function changeQuantity(Request $request)
     {
         $this->cartService->changeQuantity($request->id, $request->quantity);
-        return $request->all();
+        return [
+            "message" => "ok",
+            // "totalMoney" => $this->cartService->totalMoney()
+        ];
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCartRequest  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function add(Request $request)
+    {
+        // dd($request->all());
+
+            
+        if($this->cartService->checkExitProduct($request->product_id)==null){
+            $cart = new Cart();
+            $cart->user_id = auth()->user()->id;
+            $cart->product_id = $request->product_id;
+            $cart->quantity = $request->quantity;
+            $this->cartService->add($cart);
+            return redirect(route('user.cart.index'));
+        }else{
+            
+                $this->cartService->changeQuantity($this->cartService->checkExitProduct($request->product_id)->id, $request->quantity);
+            return redirect(route('user.cart.index'));
+        }
+        
+     
+    
+        
+    }
     public function store(StoreCartRequest $request)
     {
         //
