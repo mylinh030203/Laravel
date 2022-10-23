@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Http\Requests\StoreCartRequest;
 use App\Http\Requests\UpdateCartRequest;
 use App\Http\Services\CartService;
+use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
@@ -18,6 +19,9 @@ class CartController extends Controller
 
     public function index()
     {
+        // dd($this->cartService->changeQuantity(1,10));
+        $this->data['totalQuantity'] = $this->cartService->totalQuantity();
+        $this->data['totalMoney'] = $this->cartService->totalMoney();
         $this->data['cart'] = $this->cartService->getAll();
         return view('user.pages.cart.index', $this->data);
     }
@@ -27,9 +31,10 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function changeQuantity(Request $request)
     {
-        //
+        $this->cartService->changeQuantity($request->id, $request->quantity);
+        return $request->all();
     }
 
     /**

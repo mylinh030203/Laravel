@@ -56,9 +56,28 @@ class CartService
         }
         return $cart->paginate($limit)->withQueryString();
     }
-    public function checkLogin($username, $password){
-        $cart = $this->cart;
-        return $cart->where('username', '=',  $username)->where('password', '=',  $password)->first();
+    public function totalQuantity(){
+        $total =0;
+        foreach($this->getAll() as $item){
+            $total += $item->quantity;
+        }
+        return $total;
     }
+    public function totalMoney(){
+        $total =0;
+        foreach($this->getAll() as $item){
+            $money = $item->getProduct->price * $item->quantity;
+            $total += $money;
+        }
+        return $total;
+    }
+
+    public function changeQuantity($id_cart, $quantity){
+        $cart = $this->find($id_cart);
+        $cart->quantity += $quantity;
+        $cart->save();
+        return $cart;
+    }
+
 
 }

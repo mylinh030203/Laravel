@@ -8,19 +8,19 @@
 /* :: :: 1.0 Import Fonts */
 
 @font-face {
-    font-family: 'helveticaneuebold';
-    src: url('../fonts/helvetica_neu_bold-webfont.woff2') format('woff2'),
-    url('../fonts/helvetica_neu_bold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+    // font-family: 'helveticaneuebold';
+    // src: url('../fonts/helveticaneue_medium-webfont.woff2') format('woff2'),
+    // url('../fonts/helveticaneue_medium-webfont.woff2') format('woff');
+    // font-weight: normal;
+    // font-style: normal;
 }
 
 @font-face {
-    font-family: 'helveticaneuemedium';
-    src: url('../fonts/helveticaneue_medium-webfont.woff2') format('woff2'),
-    url('../fonts/helveticaneue_medium-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+    // font-family: 'Be Vietnam';
+    // src: url('../fonts/FontAwesome.otf') format('woff2'),
+    // url('../fonts/helvetica_neu_bold-webfont.ttf') format('woff');
+    // font-weight: normal;
+    // font-style: normal;
 }
 
 /* :: 2.0 Import All CSS */
@@ -31,7 +31,7 @@
 @import '../css/magnific-popup.css';
 @import '../css/jquery-ui.min.css';
 @import '../css/nice-select.css';
-@import '../css/font-awesome.min.css';
+// @import '../css/font-awesome.min.css';
 
 /* :: 3.0 Base CSS */
 
@@ -41,8 +41,7 @@
 }
 
 body {
-    font-family: $font-hn-med;
-    font-size: 16px;
+    // font-family: 'Be Vietnam';font-size: 22px;
 }
 
 h1,

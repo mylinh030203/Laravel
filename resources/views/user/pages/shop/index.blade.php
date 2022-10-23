@@ -12,18 +12,22 @@
     <!-- ##### Single Widget ##### -->
     <div class="widget catagory mb-50">
         <!-- Widget Title -->
-        <h6 class="widget-title mb-30">Catagories</h6>
+        <h6 class="widget-title mb-30">Categories</h6>
 
         <!--  Catagories  -->
         <div class="catagories-menu">
             <ul>
+                @foreach($type as $item)
+                <li><a class="active" href="?idtypeProduct={{ $item->id }}" >{{ $item->name }}</a></li>
+                @endforeach
+                 {{-- hello
                 <li class="active"><a href="#">Chairs</a></li>
                 <li><a href="#">Beds</a></li>
                 <li><a href="#">Accesories</a></li>
                 <li><a href="#">Furniture</a></li>
                 <li><a href="#">Home Deco</a></li>
                 <li><a href="#">Dressings</a></li>
-                <li><a href="#">Tables</a></li>
+                <li><a href="#">Tables</a></li> --}}
             </ul>
         </div>
     </div>
@@ -143,7 +147,7 @@
 
         <div class="row">
             
-            
+           
     @foreach ($products as $item )
         <div class="col-12 col-sm-6 col-md-12 col-xl-6">
             <div class="single-product-wrapper">

@@ -20,7 +20,6 @@ Route::prefix('/')->group(function(){
     });
     Route::middleware('auth')->prefix('/cart')->group(function(){
         Route::get('/', [CartController::class, 'index'])->name('user.cart.index');
-        // Route::get('/detail/{id?}',[ShopController::class, 'detail' ])->name('user.shop.detail');
     });
     Route::get('/login', [UserController::class, 'index'])->name('login');
     Route::post('/login', [AccountController::class, 'login'])->name('user.login.login');

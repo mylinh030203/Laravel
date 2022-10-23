@@ -13,14 +13,20 @@ class ShopController extends Controller
 {
     public $data = [];
 
-    public function __construct(ProductService $productService)
+    public function __construct(TypeProductService $typeProductService, ProductService $productService)
     {
-        $this->productService = $productService;    
+        $this->productService = $productService;   
+        $this->typeProductService = $typeProductService; 
     }
     
-    public function index()
+    public function index(Request $request)
     {
-        $this->data['products'] = $this->productService->getAll();
+        if($request->idtypeProduct==null)
+            $this->data['products'] = $this->productService->getAll();
+        else{
+            $this->data['products'] = $this->productService->findByIdTypeProduct($request->idtypeProduct);
+        }
+        $this->data['type'] = $this->typeProductService->getAll();
         // return view('user.pages.shop', $this->data);
         return view('user.pages.shop.index', $this->data);
     }

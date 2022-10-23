@@ -19,7 +19,7 @@ class RoleController extends Controller
     }
     //request là lấy dữ liệu từ View gửi cho controller (không lấy dữ liệu từ csdl)
     public function index(Request $request){
-        // dd($request->keywords);
+        // dd($request->all());
         $keywords = $request->keywords;
         $listRole = $this->roleService->paginate($this->limit, $keywords);
         $this->data['roles'] = $listRole;

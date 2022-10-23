@@ -29,7 +29,9 @@
                                 <th></th>
                                 <th>Name</th>
                                 <th>Price</th>
+                                
                                 <th>Quantity</th>
+                                <th>Total Price</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,6 +46,7 @@
                                 <td class="price">
                                     <span>{{number_format($item->getProduct->price, 0, '', ',')}} VND</span>
                                 </td>
+                                
                                 <td class="qty">
                                     <div class="qty-btn d-flex">
                                         <p>Qty</p>
@@ -54,8 +57,12 @@
                                         </div>
                                     </div>
                                 </td>
+                               
+                                <td class="price">
+                                    <span>{{number_format($item->getProduct->price * $item->quantity, 0, '', ',')}} VND</span>
+                                </td>
                             </tr>
-                            @endforeach;
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -64,9 +71,8 @@
                 <div class="cart-summary">
                     <h5>Cart Total</h5>
                     <ul class="summary-table">
-                        <li><span>subtotal:</span> <span>$140.00</span></li>
-                        <li><span>delivery:</span> <span>Free</span></li>
-                        <li><span>total:</span> <span>$140.00</span></li>
+                        <li><span>Total Quantity:</span> <span>{{ $totalQuantity }}</span></li>
+                        <li><span>Total Money:</span> <span>{{number_format($totalMoney, 0, '', ',')}} VND</span></li>
                     </ul>
                     <div class="cart-btn mt-100">
                         <a href="cart.html" class="btn amado-btn w-100">Checkout</a>

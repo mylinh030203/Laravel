@@ -4,7 +4,7 @@ namespace App\Http\Services;
 
 
 use App\Models\Product;
-
+use App\Models\TypeProduct;
 use Cookie;
 
 class ProductService
@@ -12,10 +12,15 @@ class ProductService
     public function __construct(Product $product)
     {
         $this->product = $product;
+        
     }
 
     public function findByProductName($productName){
-        return $this->Product->where('product_name', '=', $productName)->first();
+        return $this->product->where('product_name', '=', $productName)->first();
+    }
+
+    public function findByIdTypeProduct($idTypeProduct){
+        return $this->product->where('type_id', '=', $idTypeProduct)->paginate();
     }
 
     public function getAll() {
