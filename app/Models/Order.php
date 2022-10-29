@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+    public function getStt(){
+        return $this->hasOne(Status::class, 'id', 'stt_id');
+    }
+
+    public function getUser(){
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

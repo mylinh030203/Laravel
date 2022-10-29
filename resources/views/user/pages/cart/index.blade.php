@@ -119,16 +119,16 @@
                 </div>
             </div>
             <div class="col-12 col-lg-4">
-                <div class="cart-summary">
+                <form class="cart-summary" method="post" action="">
                     <h5>Cart Total</h5>
                     <ul class="summary-table">
                         <li><span>Total Quantity:</span> <span>{{ $totalQuantity }}</span></li>
-                        <li><span>Total Money:</span> <span>{{number_format($totalMoney, 0, '', ',')}} VND</span></li>
+                        <li><span>Total Money:</span><input type="hidden" name="total_price" value="{{ $totalMoney  }}"> <span>{{number_format($totalMoney, 0, '', ',')}} VND</span></li>
                     </ul>
                     <div class="cart-btn mt-100">
-                        <a href="cart.html" class="btn amado-btn w-100">Checkout</a>
+                        <input type="submit" class="btn amado-btn w-100" value="Checkout">
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
