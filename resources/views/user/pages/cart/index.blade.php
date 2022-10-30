@@ -86,7 +86,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{ $cart->count() }}Hello
+                            
                             @foreach($cart as $item)
                             <tr>
                                 <td class="cart_product_img">
@@ -127,9 +127,12 @@
                         <li><span>Total Quantity:</span> <span>{{ $totalQuantity }}</span></li>
                         <li><span>Total Money:</span><input type="hidden" name="total_price" value="{{ $totalMoney  }}"> <span>{{number_format($totalMoney, 0, '', ',')}} VND</span></li>
                     </ul>
+                    @if ($cart->count() >0 )
                     <div class="cart-btn mt-100">
                         <input type="submit" class="btn amado-btn w-100" value="Checkout">
                     </div>
+                    @endif
+                    
                 </form>
             </div>
         </div>
