@@ -75,6 +75,9 @@ class CartService
         $cart = $this->find($id_cart);
         $cart->quantity += $quantity;
         $cart->save();
+        if($cart->quantity == 0){
+            $this->delete($cart->id);
+        }
         return $cart;
     }
 

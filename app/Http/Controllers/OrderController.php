@@ -3,19 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\DetailOrder;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Http\Services\CartService;
+use App\Http\Services\DetailOrderService;
+use App\Http\Services\OrderService;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public $data = [];
+
+    public function __construct(OrderService $orderService, DetailOrderService $detailOrderService, CartService $cartService)
+    {
+        $this->orderService = $orderService;
+        $this->detailOrderService = $detailOrderService;
+        $this->cartService = $cartService;
+    }
+
     public function index()
     {
-        //
+        $this->data['order'] = $this->orderService->getAll();
+        return view('user.pages.order.index', $this->data) ;
     }
 
     /**
@@ -23,9 +33,25 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $order = new Order();
+        $order->user_id = auth()->user()->id;
+        $order->stt_id = 1;
+        $order->total_price = $request->total_price;
+        $this->orderService->add($order);
+        
+        $data = $this->cartService->getAll();
+        foreach($data as $item){
+            $detailOrder = new DetailOrder();
+            $detailOrder->product_id = $item->product_id;
+            $detailOrder->order_id = $order->id;
+            $detailOrder->quantity = $item->quantity;
+            $detailOrder->current_price	= $item->getProduct->price;
+            $this->detailOrderService->add($detailOrder);
+            $this->cartService->delete($item->id);
+        }
+        return redirect(route('user.order.index'));
     }
 
     /**

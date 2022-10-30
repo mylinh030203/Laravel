@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TypeProductController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\API\TestAPIController;
 
 Route::prefix('/')->group(function(){
@@ -23,6 +24,12 @@ Route::prefix('/')->group(function(){
     Route::middleware('auth')->prefix('/cart')->group(function(){
         Route::get('/', [CartController::class, 'index'])->name('user.cart.index');
         Route::post('/add',[CartController::class, 'add' ])->name('user.cart.add');
+        Route::post('/addOrder',[OrderController::class, 'create' ])->name('user.order.create');
+    });
+
+    Route::middleware('auth')->prefix('/order')->group(function(){
+        Route::get('/', [OrderController::class, 'index'])->name('user.order.index');
+        
     });
     Route::get('/login', [UserController::class, 'index'])->name('login');
     Route::post('/login', [AccountController::class, 'login'])->name('user.login.login');

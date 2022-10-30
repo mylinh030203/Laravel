@@ -86,6 +86,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{ $cart->count() }}Hello
                             @foreach($cart as $item)
                             <tr>
                                 <td class="cart_product_img">
@@ -119,7 +120,8 @@
                 </div>
             </div>
             <div class="col-12 col-lg-4">
-                <form class="cart-summary" method="post" action="">
+                <form class="cart-summary" method="post" action="{{ route('user.order.create') }}">
+                    @csrf
                     <h5>Cart Total</h5>
                     <ul class="summary-table">
                         <li><span>Total Quantity:</span> <span>{{ $totalQuantity }}</span></li>
