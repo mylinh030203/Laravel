@@ -51,15 +51,21 @@ class AccountService
         return $this->account->find($id);
     }
 
+   
 
-    public function paginate($limit, $keywords){
+    public function findKeywords($keywords){
         $account = $this->account;
         $account = $account->orderBy('created_at','desc');
         if (!empty($keywords)) {
-            $account->where('account_name', 'like', '%'. $keywords.'%');
-            $account->orWhere('description', 'like', '%'. $keywords.'%');
+            $account->where('username', 'like', '%'. $keywords.'%');
+            $account->orWhere('password', 'like', '%'. $keywords.'%');
         }
-        return $account->paginate($limit)->withQueryString();
+        return $account->withQueryString();
+    }
+
+    public function findkey($keywords){
+        return $this->account->where('username', '=' , $keywords)->orWhere('password','=',$keywords)->paginate();
+         
     }
     public function checkLogin($username, $password){
         $account = $this->account;

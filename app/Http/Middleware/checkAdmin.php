@@ -15,7 +15,7 @@ class checkAdmin
         if (auth()->user()==null)
             return redirect(route('login'))->with('error', 'Bạn cần login');
         if(auth()->user()->getAccount->getRole->role_name != 'admin')
-            return redirect(route('user.login.index'))->with('error', 'Bạn không phải admin');
+            return redirect(route('login'))->with('error', 'Bạn không phải admin');
         return $next($request);
     }
 }

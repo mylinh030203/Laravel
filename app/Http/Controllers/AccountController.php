@@ -22,10 +22,13 @@ class AccountController extends Controller
     $this->userService = $userService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-       $this->data['accounts']=$this->accountservice->getAll();
-       return view('admin.pages.account.index', $this->data);
+        if($request->keywords == "")
+            $this->data['accounts']=$this->accountservice->getAll();
+        else
+            $this->data['accounts'] = $this->accountservice->findkey($request->keywords);
+        return view('admin.pages.account.index', $this->data);
     }
 
     /**
@@ -90,7 +93,11 @@ class AccountController extends Controller
             $user = $account->getUser;
             //Login authencation
             auth()->login($user);
-            return redirect(route('user.home.index'))->with('info','Đăng nhập thành công');
+            if($account->getRole->role_name == "user")
+                return redirect(route('user.home.index'))->with('info','Đăng nhập thành công');
+            else{
+                return redirect(route('admin.account.index'))->with('info','Đăng nhập thành công');
+            }
         }else{
             return redirect(route('login'))->with('error','Đăng nhập thất bại');
         }
