@@ -5,10 +5,11 @@
 @endsection
 @section('css')
 <style>
-    img{
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
+    a{
+      font-size: 15px
+    }
+    a:hover{
+      font-size: 18px
     }
 </style>
 @endsection
@@ -18,23 +19,33 @@
 @endsection
 
 @section('content')
-<div class="cart-table-area section-padding-100">
-<table class="table">
+<div class="mt-5">
+<table class="table table-responsive">
     <thead>
       <tr>
-        <th scope="">#</th>
-        <th scope="">User_id</th>
-        <th scope="">Stt_id</th>
-        <th scope="">Total Price</th>
+        <th class="text-center" scope="">#</th>
+        <th class="text-center" scope="">Name</th>
+        <th class="text-center" scope="">Products</th>
+        <th class="text-center" scope="">Status</th>
+        <th class="text-center" scope="">Total Price</th>
       </tr>
     </thead>
     <tbody>
     @foreach ($order as $item)
         <tr>
-        <th scope="row">{{ $item->id }}</th>
-        <td class="text-right">{{ $item->user_id }}</td>
-        <td class="text-right">{{ $item->stt_id }}</td>
-        <td class="text-right">{{ $item->total_price }} </td>
+        <th class="text-center" scope="row">{{ $item->id }}</th>
+        <td class="text-center">{{ $item->getUser->fullname }}</td>
+        <td class="text-left">
+          @foreach($item->getDetailOrders as $detail)
+          <a href="{{ route('user.shop.detail',['id' => $detail->getProduct->id]) }}"><span class="text-primary">  {{ $detail->getProduct->name }}</span> </a>
+          <span class="text-danger"> x{{ $detail->quantity }}</span><br>
+          @endforeach
+          
+        </td>
+        <td class="text-center">
+          <span class="badge badge-{{ $item->getStt->color }}">{{ $item->getStt->name }}</span>
+        </td> 
+        <td class="text-right">{{number_format($item->total_price, 0, '', ',')}} VND </td>
         </tr>
     @endforeach
       

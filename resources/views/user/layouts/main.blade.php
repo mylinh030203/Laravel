@@ -66,16 +66,14 @@
             </div>
             <!-- Logo -->
             <div class="logo">
-                <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+                <a href="index.html"><img src="{{ url('user_asset/img/core-img/logo.png') }}" alt=""></a>
             </div>
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
                     <li class="active"><a href="{{ route('user.home.index') }}">Home</a></li>
                     <li><a href="{{ route('user.shop.index')}}">Shop</a></li>
-                    <li><a href="product-details.html">Product</a></li>
-                    <li><a href="{{ route('user.cart.index')}}">Cart</a></li>
-                    <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="{{ route('user.order.index') }}">Order</a></li>
                 </ul>
             </nav>
             <!-- Button Group -->
@@ -85,7 +83,7 @@
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="cart.html" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
+                <a href="{{ route('user.cart.index')}}" class="cart-nav"><img src="{{ url('user_asset/img/core-img/cart.png') }}" alt=""> Cart <span>(0)</span></a>
                 <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
             </div>

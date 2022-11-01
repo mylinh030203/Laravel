@@ -5,7 +5,7 @@
 @endsection
 @section('css')
 <style>
-    img{
+    .sm-product{
         width: 100px;
         height: 100px;
         object-fit: cover;
@@ -90,7 +90,7 @@
                             @foreach($cart as $item)
                             <tr>
                                 <td class="cart_product_img">
-                                    <a href="#"><img src="{{ url($item->getProduct->URL) }}" alt="Product"></a>
+                                    <a href="#"><img class="sm-product" src="{{ url($item->getProduct->URL) }}" alt="Product"></a>
                                 </td>
                                 <td class="cart_product_desc">
                                     <h5>{{ $item->getProduct->name }}</h5>
