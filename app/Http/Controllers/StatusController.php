@@ -5,17 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Status;
 use App\Http\Requests\StoreStatusRequest;
 use App\Http\Requests\UpdateStatusRequest;
+use App\Http\Services\StatusService;
 
 class StatusController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct(StatusService $statusService)
+    {
+        $this->statusService = $statusService;
+    }
     public function index()
     {
-        //
+        // $this->data['status'] = $this->statusService->getAll();
+        // return view('user.pages.order.index', $this->data) ;
+        
     }
 
     /**

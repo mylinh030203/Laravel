@@ -9,23 +9,35 @@ use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Services\CartService;
 use App\Http\Services\DetailOrderService;
 use App\Http\Services\OrderService;
+use App\Http\Services\StatusService;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
     public $data = [];
 
-    public function __construct(OrderService $orderService, DetailOrderService $detailOrderService, CartService $cartService)
+    public function __construct(OrderService $orderService, DetailOrderService $detailOrderService, CartService $cartService,StatusService $statusService)
     {
         $this->orderService = $orderService;
         $this->detailOrderService = $detailOrderService;
         $this->cartService = $cartService;
+        $this->statusService = $statusService;
     }
 
     public function index()
     {
         $this->data['order'] = $this->orderService->getAll();
         return view('user.pages.order.index', $this->data) ;
+    }
+
+    public function indexAdmin(Request $request)
+    {
+        
+        $data = ['stt_id' => $request->stt_id];
+        $this->orderService->update($request->id, $data);
+        $this->data['status'] = $this->statusService->getAll();
+        $this->data['orders'] = $this->orderService->getAllAdmin();
+        return view('admin.pages.order.index', $this->data) ;
     }
 
     /**
@@ -71,7 +83,7 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function showEdit($id)
     {
         //
     }
