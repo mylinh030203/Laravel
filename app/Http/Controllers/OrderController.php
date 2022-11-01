@@ -39,6 +39,13 @@ class OrderController extends Controller
         $this->data['orders'] = $this->orderService->getAllAdmin();
         return view('admin.pages.order.index', $this->data) ;
     }
+    public function editStt(Request $request)
+    {
+        
+        $data = ['stt_id' => $request->stt_id];
+        $this->orderService->update($request->id, $data);
+        return redirect(route('admin.order.indexAdmin')) ;
+    }
 
     /**
      * Show the form for creating a new resource.

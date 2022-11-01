@@ -96,7 +96,8 @@
             </td> 
             <td class="text-right">{{number_format($item->total_price, 0, '', ',')}} VND </td>
 
-            <form method="get" action="">
+            <form method="post" action="{{ route('admin.order.editStt') }}">
+                @csrf
                 <td class="text-right">
                     <input type="hidden" name='id' value="{{ $item->id }}">
                     <select class="form-control" id="exampleFormControlSelect1" name='stt_id'>

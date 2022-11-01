@@ -91,8 +91,8 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function(){
         // Route::get('/delete/{id}', [TypeProductController::class, 'delete'])->name('admin.type_product.detete');
         // Route::get('/create', [TypeProductController::class, 'showCreate'])->name('admin.type_product.showcreate');
         // Route::post('/create', [TypeProductController::class, 'create'])->name('admin.type_product.create');
-        Route::get('/edit/{id?}', [TypeProductController::class, 'showEdit'])->name('admin.order.showedit');
-        Route::post('/edit/{id}', [TypeProductController::class, 'edit'])->name('admin.type_product.edit');
+        // Route::get('/edit/{id?}', [TypeProductController::class, 'showEdit'])->name('admin.order.showedit');
+        Route::post('/', [OrderController::class, 'editStt'])->name('admin.order.editStt');
     });
 
 });
