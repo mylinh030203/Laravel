@@ -22,8 +22,13 @@ class CartController extends Controller
         // dd($this->cartService->changeQuantity(1,10));
         $this->data['totalQuantity'] = $this->cartService->totalQuantity();
         $this->data['totalMoney'] = $this->cartService->totalMoney();
+        $this->data['count'] = $this->cartService->countProduct();
         $this->data['cart'] = $this->cartService->getAll();
         return view('user.pages.cart.index', $this->data);
+    }
+    public function count(){
+        
+        return view('user.layouts.main', $this->data);
     }
 
     /**

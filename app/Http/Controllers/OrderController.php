@@ -27,6 +27,7 @@ class OrderController extends Controller
     public function index()
     {
         $this->data['order'] = $this->orderService->getAll();
+        $this->data['count'] = $this->cartService->countProduct();
         return view('user.pages.order.index', $this->data) ;
     }
 

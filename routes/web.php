@@ -13,8 +13,7 @@ use App\Http\Controllers\API\TestAPIController;
 
 Route::prefix('/')->group(function(){
     
-    Route::get('/',function(){
-        return view('user.pages.index');})->name('user.home.index');
+    Route::get('/',[ShopController::class, 'home'])->name('user.home.index');
     Route::prefix('/shop')->group(function(){
         Route::get('/', [ShopController::class, 'index'])->name('user.shop.index');
         Route::get('/detail/{id?}',[ShopController::class, 'detail' ])->name('user.shop.detail');
@@ -25,6 +24,7 @@ Route::prefix('/')->group(function(){
         Route::get('/', [CartController::class, 'index'])->name('user.cart.index');
         Route::post('/add',[CartController::class, 'add' ])->name('user.cart.add');
         Route::post('/addOrder',[OrderController::class, 'create' ])->name('user.order.create');
+        
     });
 
     Route::middleware('auth')->prefix('/order')->group(function(){

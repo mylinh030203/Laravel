@@ -70,6 +70,13 @@ class CartService
         }
         return $total;
     }
+    public function countProduct(){
+        $count =0;
+        foreach($this->getAll() as $item){
+            $count += 1;
+        }
+        return $count;
+    }
 
     public function changeQuantity($id_cart, $quantity){
         $cart = $this->find($id_cart);
