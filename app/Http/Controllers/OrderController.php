@@ -10,6 +10,8 @@ use App\Http\Services\CartService;
 use App\Http\Services\DetailOrderService;
 use App\Http\Services\OrderService;
 use App\Http\Services\StatusService;
+use App\Models\Status;
+use Dotenv\Util\Str;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -36,8 +38,9 @@ class OrderController extends Controller
         
         $data = ['stt_id' => $request->stt_id];
         $this->orderService->update($request->id, $data);
-        $this->data['status'] = $this->statusService->getAll();
-        $this->data['orders'] = $this->orderService->getAllAdmin();
+        $this->data['status'] = $this->statusService->getAll(); 
+        $this->data['orders'] = $this->orderService->getAllAdmin($request->stt);
+        
         return view('admin.pages.order.index', $this->data) ;
     }
     public function editStt(Request $request)
@@ -82,7 +85,7 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        //
+        
     }
 
     /**
@@ -91,9 +94,9 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function showEdit($id)
+    public function find(Request $request)
     {
-        //
+        
     }
 
     /**

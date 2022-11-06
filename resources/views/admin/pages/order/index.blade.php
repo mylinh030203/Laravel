@@ -68,6 +68,11 @@
 
 @section('content_card')
 <div class="mt-5">
+                @foreach($status as $item)
+                <a class="btn btn-{{ $item->color }} btn-sm" href="?stt={{ $item->id }}" >{{ $item->name }}</a>
+                @endforeach
+               
+            </ul>
     <table class="table table-responsive">
         <thead>
           <tr>

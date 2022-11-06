@@ -20,8 +20,8 @@ class OrderService
         return $this->order->orderBy('id','asc')->where('user_id','=',auth()->user()->id)->get(); //limit 
     }
 
-    public function getAllAdmin() {
-        return $this->order->orderBy('id','asc')->get(); //limit 
+    public function getAllAdmin($id) {
+        return $this->order->orderBy('id','asc')->where('stt_id','=',$id)->get(); //limit 
     }
 
     public function delete($id) {
