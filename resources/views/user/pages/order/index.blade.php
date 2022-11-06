@@ -20,6 +20,9 @@
 
 @section('content')
 <div class="mt-5">
+    @foreach($statuses as $item)
+      <a class="btn btn-{{ $item->color }} btn-sm" href="?stt={{ $item->id }}" >{{ $item->name }}</a>
+    @endforeach
 <table class="table table-responsive">
     <thead>
       <tr>

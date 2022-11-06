@@ -67,4 +67,10 @@ class UserService
         }
     }
 
+    public function changeMoney($totalMoney){
+        $user = auth()->user();
+        $user->money = $user->money - $totalMoney;
+        $this->update(auth()->user()->id,['money'=>$user->money] );
+    }
+
 }

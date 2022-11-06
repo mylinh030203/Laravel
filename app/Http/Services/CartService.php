@@ -17,6 +17,7 @@ class CartService
     
 
     public function getAll() {
+        
         return $this->cart->orderBy('id','asc')->where('user_id','=',auth()->user()->id)->get(); //limit 
     }
 
@@ -72,9 +73,10 @@ class CartService
     }
     public function countProduct(){
         $count =0;
-        foreach($this->getAll() as $item){
-            $count += 1;
-        }
+        if(auth()->user()!=null)
+            foreach($this->getAll() as $item){
+                $count += 1;
+            }
         return $count;
     }
 

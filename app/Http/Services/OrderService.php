@@ -19,9 +19,16 @@ class OrderService
     public function getAll() {
         return $this->order->orderBy('id','asc')->where('user_id','=',auth()->user()->id)->get(); //limit 
     }
+    public function findByStatusId($id) {
+        return $this->order->orderBy('id','asc')->where('user_id','=',auth()->user()->id)->where('stt_id','=',$id)->get(); //limit 
+    }
 
-    public function getAllAdmin($id) {
+    public function AdminFindByStatusId($id) {
         return $this->order->orderBy('id','asc')->where('stt_id','=',$id)->get(); //limit 
+    }
+
+    public function getAllAdmin() {
+        return $this->order->orderBy('id','asc')->get(); //limit 
     }
 
     public function delete($id) {
@@ -49,6 +56,12 @@ class OrderService
     public function find($id) {
         return $this->order->find($id);
     }
+    public function checkMoney($totalMoney){
+        $user = auth()->user();
+        return($user->money>=$totalMoney);
+    }
+
+    
 
 
 
