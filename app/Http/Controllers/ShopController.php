@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Services\CartService;
 use App\Http\Services\ProductService;
+use App\Http\Services\SizeService;
 use App\Http\Services\TypeProductService;
 use Illuminate\Http\Request;
 
@@ -14,11 +15,14 @@ class ShopController extends Controller
 {
     public $data = [];
 
-    public function __construct(TypeProductService $typeProductService, ProductService $productService, CartService $cartService)
+    public function __construct(TypeProductService $typeProductService,
+    ProductService $productService, 
+    CartService $cartService, SizeService $sizeService)
     {
         $this->productService = $productService;   
         $this->typeProductService = $typeProductService; 
         $this->cartService = $cartService;
+        $this->sizeService = $sizeService;
     }
     
     public function index(Request $request)
@@ -38,6 +42,7 @@ class ShopController extends Controller
     public function detail($id = null){
         $this->data['product'] = $this->productService->find($id);
         $this->data['count'] = $this->cartService->countProduct();
+        
         return view('user.pages.shop.detail', $this->data);
     }
 

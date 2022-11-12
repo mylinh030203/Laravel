@@ -93,4 +93,51 @@ return [
             ]
         ],
     ],
+    [
+        'title' => 'Kích cỡ sản phẩm',
+        'name' => 'product_size',
+        'route' => 'product_size',
+        'children' => [
+            [
+                'title' => 'Danh sách kích cỡ sản phẩm',
+                'name' => 'index',
+                'route' => 'admin.product_size.index',
+            ],
+            [
+                'title' => 'Thêm kích cỡ sản phẩm',
+                'name' => 'create',
+                'route' => 'admin.product_size.showcreate',
+            ]
+        ],
+    ],
+    [
+        'title' => 'Kích cỡ',
+        'name' => 'size',
+        'route' => 'size',
+        'children' => [
+            [
+                'title' => 'Danh sách kích cỡ',
+                'name' => 'index',
+                'route' => 'admin.size.index',
+            ],
+            [
+                'title' => 'Thêm kích cỡ',
+                'name' => 'create',
+                'route' => 'admin.size.showcreate',
+            ]
+        ],
+    ],
+    [
+        'title' => 'Đơn đặt hàng',
+        'name' => 'order',
+        'route' => 'order',
+        'children' => [
+            [
+                'title' => 'Danh sách đơn đặt hàng',
+                'name' => 'indexAdmin',
+                'route' => 'admin.order.indexAdmin',
+            ],
+           
+        ],
+    ],
 ];

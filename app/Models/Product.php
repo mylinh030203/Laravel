@@ -11,4 +11,8 @@ class Product extends Model
     public function getType(){
         return $this->hasOne(TypeProduct::class, 'id', 'type_id');
     }
+
+    public function getListSize(){
+        return $this->belongsToMany(Size::class, 'product_sizes', 'product_id', 'size_id');
+    }
 }

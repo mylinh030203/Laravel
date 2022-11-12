@@ -51,11 +51,14 @@ class CartController extends Controller
 
             
         if($this->cartService->checkExitProduct($request->product_id)==null){
+           
             $cart = new Cart();
             $cart->user_id = auth()->user()->id;
             $cart->product_id = $request->product_id;
             $cart->quantity = $request->quantity;
+            $cart->size_id = $request->size_id;
             $this->cartService->add($cart);
+            
             return redirect(route('user.cart.index'));
         }else{
             

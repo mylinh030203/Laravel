@@ -38,8 +38,8 @@
 @endsection
 @section('menu')
     @php
-        $menu_parent = 'product';
-        $menu_child = 'index';
+        $menu_parent = 'order';
+        $menu_child = 'indexAdmin';
     @endphp
 @endsection
 @section('title_component')
@@ -49,7 +49,7 @@
     Order
 @endsection
 @section('actions_layout')
-    <a href="{{route('admin.product.index')}}" class="btn btn-primary btn-sm mr-2 mb-2 mb-lg-0">
+    <a href="{{route('admin.order.indexAdmin')}}" class="btn btn-primary btn-sm mr-2 mb-2 mb-lg-0">
         <i class="fa fa-list"></i> List order
     </a>
 @endsection

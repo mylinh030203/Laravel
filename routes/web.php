@@ -9,7 +9,10 @@ use App\Http\Controllers\TypeProductController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SizeController;
 use App\Http\Controllers\API\TestAPIController;
+use App\Http\Controllers\ProductSizeController;
+
 
 Route::prefix('/')->group(function(){
     
@@ -93,6 +96,23 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function(){
         // Route::post('/create', [TypeProductController::class, 'create'])->name('admin.type_product.create');
         // Route::get('/edit/{id?}', [TypeProductController::class, 'showEdit'])->name('admin.order.showedit');
         Route::post('/', [OrderController::class, 'editStt'])->name('admin.order.editStt');
+    });
+
+    Route::prefix('size')->group(function(){
+        Route::get('/', [SizeController::class, 'index'])->name('admin.size.index');
+        Route::get('/delete/{id}', [SizeController::class, 'delete'])->name('admin.size.detete');
+        Route::get('/create', [SizeController::class, 'showCreate'])->name('admin.size.showcreate');
+        Route::post('/create', [SizeController::class, 'create'])->name('admin.size.create');
+        Route::get('/edit/{id?}', [SizeController::class, 'showEdit'])->name('admin.size.showedit');
+        Route::post('/edit/{id}', [SizeController::class, 'edit'])->name('admin.size.edit');
+    });
+    Route::prefix('product_size')->group(function(){
+        Route::get('/', [ProductSizeController::class, 'index'])->name('admin.product_size.index');
+        // Route::get('/delete/{id}', [TypeProductController::class, 'delete'])->name('admin.type_product.detete');
+        Route::get('/create', [ProductSizeController::class, 'showCreate'])->name('admin.product_size.showcreate');
+        Route::post('/create', [ProductSizeController::class, 'create'])->name('admin.product_size.create');
+        // Route::get('/edit/{id?}', [SizeController::class, 'showEdit'])->name('admin.size.showedit');
+        // Route::post('/edit/{id}', [SizeController::class, 'edit'])->name('admin.size.edit');
     });
 
 });

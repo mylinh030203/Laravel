@@ -83,6 +83,7 @@
                                 
                                 <th>Quantity</th>
                                 <th>Total Price</th>
+                                <th>Size</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -112,6 +113,10 @@
                                
                                 <td class="price">
                                     <span>{{number_format($item->getProduct->price * $item->quantity, 0, '', ',')}} VND</span>
+                                </td>
+
+                                <td class="cart_product_desc">
+                                    <h5>{{ $item->getSize->name }}</h5>
                                 </td>
                             </tr>
                             @endforeach

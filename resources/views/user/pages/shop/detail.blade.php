@@ -79,6 +79,17 @@
                                 <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
                             </div>
                         </div>
+                        <fieldset>
+                            <label for="">Select size: </label>
+                           
+                            <div class="some-class">
+                                @foreach ($product->getListSize as $item)
+                                <input type="radio" class="radio" name="size_id" value="{{ $item->id }}" id="{{ $item->id }}" checked/>
+                                <label for="{{ $item->id }}">{{ $item->name }}</label>
+                                @endforeach
+                              
+                            </div>
+                          </fieldset>
                         <input type="submit" name="addtocart" value="Add to cart" class="btn amado-btn">
                     </form>
 
