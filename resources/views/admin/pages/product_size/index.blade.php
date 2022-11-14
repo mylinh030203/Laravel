@@ -93,10 +93,7 @@
         <th class="align-middle text-center" scope="row">{{$item->getSize->name}}</th>
         <td class="align-center justify-content-center">
             
-            <a href="{{route('admin.size.showedit')}}/{{$item->id}}" class="btn btn-icon btn-success btn-sm btn-icon-md btn-circle mx-1"
-               title="Sửa">
-                <i class="fa fa-edit"></i>
-            </a>
+            
             <span class="delete-btn btn btn-icon btn-danger btn-sm btn-icon-md btn-circle mx-1"
                   data-toggle="tooltip" data-placement="top" data-id="{{$item->id}}" title="Xóa">
                             <i class="fa fa-trash"></i>

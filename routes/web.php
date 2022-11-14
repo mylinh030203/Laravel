@@ -108,7 +108,7 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function(){
     });
     Route::prefix('product_size')->group(function(){
         Route::get('/', [ProductSizeController::class, 'index'])->name('admin.product_size.index');
-        // Route::get('/delete/{id}', [TypeProductController::class, 'delete'])->name('admin.type_product.detete');
+        Route::get('/delete/{id}', [ProductSizeController::class, 'delete'])->name('admin.product_size.detete');
         Route::get('/create', [ProductSizeController::class, 'showCreate'])->name('admin.product_size.showcreate');
         Route::post('/create', [ProductSizeController::class, 'create'])->name('admin.product_size.create');
         // Route::get('/edit/{id?}', [SizeController::class, 'showEdit'])->name('admin.size.showedit');
