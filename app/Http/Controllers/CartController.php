@@ -59,13 +59,11 @@ class CartController extends Controller
             $cart->size_id = $request->size_id;
             $this->cartService->add($cart);
             
-            return redirect(route('user.cart.index'));
+           
         }else{
-            
-                $this->cartService->changeQuantity($this->cartService->checkExitProduct($request->product_id)->id, $request->quantity);
-            return redirect(route('user.cart.index'));
+            $this->cartService->changeQuantity($this->cartService->checkExitProduct($request->product_id)->id, $request->quantity);   
         }
-        
+        return redirect(route('user.cart.index'))->with('success', "Thêm thành công");
      
     
         

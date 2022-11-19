@@ -85,9 +85,9 @@ class OrderController extends Controller
                 $this->detailOrderService->add($detailOrder);
                 $this->cartService->delete($item->id);
             }
-            return redirect(route('user.order.index'));
+            return redirect(route('user.order.index'))->with('success', "Thanh toán thành công!");
         }else{
-            return redirect(route('user.cart.index'));
+            return redirect(route('user.cart.index'))->with('error',"Tiền trong tài khoản của bạn không đủ");
         }
     }
 

@@ -14,15 +14,24 @@
 
     <!-- Favicon  -->
     <link rel="icon" href="img/core-img/favicon.ico">
+    
+
+    {{-- toastr --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/css/toastr.min.css">
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="{{ asset('/user_asset/css/core-style.css') }}">
     <link rel="stylesheet" href="{{ asset('/user_asset/style.css') }}">
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
     @yield('css')
 
 </head>
 
-<body>
+<body @yield('onload')>
     <!-- Search Wrapper Area Start -->
     <div class="search-wrapper section-padding-100">
         <div class="search-close">
@@ -192,5 +201,15 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="{{ asset('/user_asset/js/active.js') }}"></script>
     @yield('js_custom')
 </body>
+<script>
+    function onload(text, type) {
+        if (type == "success")
+            toastr.success(text)
+        else if (type == "warning")
+            toastr.warning(text)
+        else if (type == "danger")
+            toastr.error(text)
+    }
+</script>
 
 </html>

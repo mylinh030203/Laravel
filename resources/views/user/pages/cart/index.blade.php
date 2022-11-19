@@ -13,6 +13,15 @@
 </style>
 @endsection
 
+@section('onload')
+    @if ($message = Session::get('success'))
+        onload="onload('{{$message}}' , 'success')"
+    @endif
+    @if ($message = Session::get('error'))
+        onload="onload('{{$message}}' , 'danger')"
+    @endif
+@endsection
+
 @section('js_custom')
 <script>
     function plush(id) {
