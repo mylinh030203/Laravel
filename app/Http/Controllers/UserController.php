@@ -21,6 +21,8 @@ class UserController extends Controller
     }
 
     public function profile($id=null){
+        if($id == null && auth()->user()!=null)
+            $id = auth()->user()->id;
         $this->data['user']= $this->userService->find($id);
         return view('user.pages.profile.index', $this->data);
     }

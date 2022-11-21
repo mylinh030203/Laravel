@@ -59,6 +59,7 @@ class AccountController extends Controller
         $this->accountservice->add($account);
         $user = new User();
         $user->account_id = $account->id;
+        $user->money = 0;
         $this->userService->add($user);
         return redirect(route('admin.account.index'))->with('info','Thêm thành công');
     }
