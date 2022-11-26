@@ -11,6 +11,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SizeController;
 use App\Http\Controllers\API\TestAPIController;
+use App\Http\Controllers\AutoBankController;
 use App\Http\Controllers\ProductSizeController;
 
 
@@ -63,6 +64,9 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function(){
         Route::get('/detail', [RoleAccountController::class, 'findByIdRole'])->name('admin.role.detail');
         Route::post('/detail', [RoleAccountController::class, 'add'])->name('admin.role.detail.add');
         Route::get('/detail/delete/{id}', [RoleAccountController::class, 'delete'])->name('admin.role.detail.detete');
+    });
+    Route::prefix('auto-bank')->group(function(){
+        Route::get('/', [AutoBankController::class, 'index'])->name('admin.autoBank.index');
     });
     Route::prefix('account')->group(function(){
         Route::get('/', [AccountController::class, 'index'])->name('admin.account.index');
