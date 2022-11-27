@@ -2,15 +2,18 @@
 
 namespace App\Http\Services;
 
-
+use App\Http\Services\BankService;
+use App\Http\Services\UserService;
 use App\Models\AutoBank;
 use Illuminate\Support\Facades\Http;
 
 class AutoBankService
 {
-    public function __construct(AutoBank $autoBank)
+    public function __construct(AutoBank $autoBank, BankService $bankService, UserService $userService)
     {
         $this->autoBank = $autoBank;
+        $this->bankService = $bankService;
+        $this->userService = $userService;
     }
 
     public function findByautoBankName($autoBankName){
@@ -46,8 +49,50 @@ class AutoBankService
     //     $autoBankautoBank->save();
     // }
     public function getTransactions() {
-        $response = Http::post('https://api.web2m.com/historyapiacb/Zuka030203/5563331/51E76C9A-CBAC-948C-77EF-7EF2CC75D6D8');
+        $bank = $this->bankService->getFirst();
+        $password = $bank->password;
+        $number = $bank->number;
+        $token = $bank->token;
+        $response = Http::post('https://api.web2m.com/historyapiacb/'.$password.'/'.$number.'/'.$token);
         return $response['transactions'];
+    }
+    public function getIdFromDescription($description) {
+        
+        $pos = strpos($description, "USER");
+        $id = "";
+        for ($i = $pos + 4; $i < strlen($description); $i++)
+            if (is_numeric($description[$i]))
+                $id .= $description[$i];
+            else
+                break;
+        return $id;
+    }
+
+    public function solveTransaction(){
+        $transactions = $this->getTransactions();
+        $id_new = "";
+        foreach($transactions as $item){
+            if($item['type']=="IN"){
+                $description = $item['description']; 
+                if(str_contains($description, 'USER')){
+                    $id = $this->getIdFromDescription($description); 
+                    if($this->checkTransaction($item['transactionNumber']) && is_numeric($id)){
+                        $autoBank = new AutoBank();
+                        $autoBank->user_id = $id;
+                        $autoBank->amount = $item['amount'];
+                        $autoBank->transactionNumber = $item['transactionNumber'];
+                        $this->add($autoBank);
+                        $this->userService->changeMoney(-$autoBank->amount);
+                        $id_new = $id;
+                    }
+                }         
+            }
+            return $id_new;
+        }
+    }
+
+    public function checkTransaction($transactionNumber){
+       return($this->autoBank->where('transactionNumber','=',$transactionNumber)->first()==null) ;
     }
 
     public function find($id) {

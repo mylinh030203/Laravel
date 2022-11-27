@@ -48,6 +48,9 @@ Route::prefix('/')->group(function(){
         Route::post('/', [TestAPIController::class, 'search'])->name('user.APITest.search'); 
         
      });
+     Route::prefix('deposit')->middleware('auth')->group(function(){
+        Route::get('/', [AutoBankController::class, 'indexDeposit'])->name('user.deposit.index');
+    });
 
 });
 
@@ -68,6 +71,7 @@ Route::prefix('admin')->middleware('checkAdmin')->group(function(){
     Route::prefix('auto-bank')->group(function(){
         Route::get('/', [AutoBankController::class, 'index'])->name('admin.autoBank.index');
     });
+ 
     Route::prefix('account')->group(function(){
         Route::get('/', [AccountController::class, 'index'])->name('admin.account.index');
         Route::get('/delete/{id}', [AccountController::class, 'delete'])->name('admin.account.detete');

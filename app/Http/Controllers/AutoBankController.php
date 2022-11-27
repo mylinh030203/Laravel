@@ -6,21 +6,40 @@ use App\Models\AutoBank;
 use App\Http\Requests\StoreAutoBankRequest;
 use App\Http\Requests\UpdateAutoBankRequest;
 use App\Http\Services\AutoBankService;
+use App\Http\Services\CartService;
+use App\Http\Services\BankService;
 use Database\Seeders\AutoBankSeeder;
 
 class AutoBankController extends Controller
 {
 
     public $data = [];
-    public function __construct(AutoBankService $autoBankService)
+    public function __construct(AutoBankService $autoBankService, CartService $cartService, BankService $bankService)
     {
         $this->autoBankService = $autoBankService;
+        $this->cartService = $cartService;
+        $this->bankService = $bankService;
     }
 
     public function index()
     {
         $this->data['transactions'] = collect($this->autoBankService->getTransactions());
         return view('admin.pages.autoBank.index',$this->data);
+    }
+
+    public function indexDeposit()
+    {
+        $bank = $this->bankService->getFirst();
+        $number = $bank->number;
+        $shortName = $bank->shortName;
+        $description = "USER".auth()->user()->id;
+        $this->data['count'] = $this->cartService->countProduct();
+        $this->data['linkQR'] = "https://api.vietqr.io/".$shortName."/".$number."/10000/".$description."/vietqr_net_2.jpg";
+        $id = ($this->autoBankService->solveTransaction());
+        if(auth()->user()->id == $id){
+            return redirect(route('user.home.index'))->with('success','Nạp tiền thành công');
+        }
+        return view('user.pages.deposit.index', $this->data);
     }
 
     /**

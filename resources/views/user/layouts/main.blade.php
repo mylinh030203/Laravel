@@ -90,10 +90,12 @@
                 <a href="{{ route('login') }}" class="btn amado-btn mb-15">{{ (auth()->user()!=null) ? auth()->user()->fullname : "Login" }}</a>
                
             </div>
+
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
+                <a style="color: red" href="{{ route('user.deposit.index') }}" class="cart-nav">{{ (auth()->user()!=null) ? number_format(auth()->user()->money, 0, '', ',') : "" }}&nbsp; VND</a>
                 <a href="{{ route('user.cart.index')}}" class="cart-nav"><img src="{{ url('user_asset/img/core-img/cart.png') }}" alt=""> Cart <span>({{ $count }})</span></a>
-                <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
+                <a href="{{ route('user.deposit.index') }}" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Deposit</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
             </div>
             <!-- Social Button -->
