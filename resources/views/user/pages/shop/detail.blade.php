@@ -3,6 +3,11 @@
 @section('title')
     Shop | {{ $product->name }}
 @endsection
+@section('menu')
+    @php
+    $menu = 'shop';
+    @endphp
+@endsection
 
 @section('content')
    <!-- Product Details Area Start -->

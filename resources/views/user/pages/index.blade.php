@@ -4,6 +4,12 @@
     Home
 @endsection
 
+@section('menu')
+    @php
+    $menu = 'home';
+    @endphp
+@endsection
+
 @section('onload')
     @if ($message = Session::get('success'))
         onload="onload('{{$message}}' , 'success')"

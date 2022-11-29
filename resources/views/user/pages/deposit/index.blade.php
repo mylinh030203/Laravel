@@ -3,6 +3,12 @@
 @section('title')
     Order
 @endsection
+
+@section('menu')
+    @php
+    $menu = '';
+    @endphp
+@endsection
 @section('css')
 <style>
     a{

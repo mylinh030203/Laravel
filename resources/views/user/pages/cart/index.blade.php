@@ -3,6 +3,12 @@
 @section('title')
     Cart
 @endsection
+@section('menu')
+    @php
+    $menu = '';
+    @endphp
+@endsection
+
 @section('css')
 <style>
     .sm-product{

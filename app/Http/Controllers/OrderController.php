@@ -11,9 +11,11 @@ use App\Http\Services\DetailOrderService;
 use App\Http\Services\OrderService;
 use App\Http\Services\StatusService;
 use App\Http\Services\UserService;
+use App\Mail\sendMail;
 use App\Models\Status;
 use Dotenv\Util\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -85,6 +87,8 @@ class OrderController extends Controller
                 $this->detailOrderService->add($detailOrder);
                 $this->cartService->delete($item->id);
             }
+            //gui mail
+            Mail::to('xwy66278@cdfaq.com')->send(new sendMail());
             return redirect(route('user.order.index'))->with('success', "Thanh toán thành công!");
         }else{
             return redirect(route('user.cart.index'))->with('error',"Tiền trong tài khoản của bạn không đủ");

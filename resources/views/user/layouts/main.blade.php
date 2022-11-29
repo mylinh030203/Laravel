@@ -78,11 +78,12 @@
                 <a href="index.html"><img src="{{ url('user_asset/img/core-img/logo.png') }}" alt=""></a>
             </div>
             <!-- Amado Nav -->
+            @yield('menu');
             <nav class="amado-nav">
                 <ul>
-                    <li class="active"><a href="{{ route('user.home.index') }}">Home</a></li>
-                    <li><a href="{{ route('user.shop.index')}}">Shop</a></li>
-                    <li><a href="{{ route('user.order.index') }}">Order</a></li>
+                    <li class="{{ ($menu == 'home') ? "active" : "" }}"><a href="{{ route('user.home.index') }}">Home</a></li>
+                    <li class="{{ ($menu == 'shop') ? "active" : "" }}"><a href="{{ route('user.shop.index')}}">Shop</a></li>
+                    <li class="{{ ($menu == 'order') ? "active" : "" }}"><a href="{{ route('user.order.index') }}">Order</a></li>
                 </ul>
             </nav>
             <!-- Button Group -->

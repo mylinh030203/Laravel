@@ -4,6 +4,12 @@
     Shop
 @endsection
 
+@section('menu')
+    @php
+    $menu = 'shop';
+    @endphp
+@endsection
+
 @section('content')
 <div class="shop_sidebar_area">
     
