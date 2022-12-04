@@ -74,30 +74,34 @@
                 <i class="fa fa-close" aria-hidden="true"></i>
             </div>
             <!-- Logo -->
-            <div class="logo">
-                <a href="index.html"><img src="{{ url('user_asset/img/core-img/logo.png') }}" alt=""></a>
+            <div class="cart-fav-search mb-10">
+                <a href="#" class="search-nav">
+                    <img alt="Logo" src="{{asset('/admin/assets/media/logos/default-dark.svg')}}"
+                         class="h-25px app-sidebar-logo-default"/>
+                </a>
             </div>
             <!-- Amado Nav -->
-            @yield('menu');
+            @yield('menu')
             <nav class="amado-nav">
                 <ul>
                     <li class="{{ ($menu == 'home') ? "active" : "" }}"><a href="{{ route('user.home.index') }}">Home</a></li>
                     <li class="{{ ($menu == 'shop') ? "active" : "" }}"><a href="{{ route('user.shop.index')}}">Shop</a></li>
-                    <li class="{{ ($menu == 'order') ? "active" : "" }}"><a href="{{ route('user.order.index') }}">Order</a></li>
+                    <li class="{{ ($menu == 'profile') ? "active" : "" }}"><a href="{{ route('user.order.index') }}">Order</a></li>
                 </ul>
             </nav>
             <!-- Button Group -->
             <div class="amado-btn-group mt-30 mb-100">
-                <a href="{{ route('login') }}" class="btn amado-btn mb-15">{{ (auth()->user()!=null) ? auth()->user()->fullname : "Login" }}</a>
-               
+                <a href="{{ route('login') }}" class="btn amado-btn mb-15">{{ (auth()->user()!=null) ? auth()->user()->fullname : "Login" }}</a> 
             </div>
 
+            
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
+                <a href="{{ route('user.profile.index') }}" class="cart-nav">{{ (auth()->user()!=null) ? "Xem thông tin" : "" }}</a>
                 <a style="color: red" href="{{ route('user.deposit.index') }}" class="cart-nav">{{ (auth()->user()!=null) ? number_format(auth()->user()->money, 0, '', ',') : "" }}&nbsp; VND</a>
                 <a href="{{ route('user.cart.index')}}" class="cart-nav"><img src="{{ url('user_asset/img/core-img/cart.png') }}" alt=""> Cart <span>({{ $count }})</span></a>
-                <a href="{{ route('user.deposit.index') }}" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Deposit</a>
-                <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
+                <a href="{{ route('user.deposit.index') }}" class="fav-nav"><img src="{{ url('user_asset/img/core-img/favorites.png') }}" alt=""> Deposit</a>
+                <a href="#" class="search-nav"><img src="{{ url('user_asset/img/core-img/search.png') }}" alt=""> Search</a>
             </div>
             <!-- Social Button -->
             <div class="social-info d-flex justify-content-between">

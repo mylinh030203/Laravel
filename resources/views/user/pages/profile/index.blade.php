@@ -73,6 +73,8 @@
     @endif
 @endsection
 
+
+
 @section('content_card')
     <section style="background-color: #0e2a47;">
         <div class="container py-5">

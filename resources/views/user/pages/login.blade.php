@@ -130,6 +130,7 @@
                 <label id="showPasswordToggle" for="showPasswordCheck">Show
             <input id="showPasswordCheck" type="checkbox">
             <div class="indicator"></div>
+            
         </label>
 
             </div>
@@ -145,10 +146,8 @@
             </p>
             </div>
             @endif
-                
-            
 
-
+            <a href="{{ route('register') }}" class="btn btn-success"> Đăng ký </a>
             <div class="inputGroup inputGroup3">
                 <button id="login">Log in</button>
             </div>

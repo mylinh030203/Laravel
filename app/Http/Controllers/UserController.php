@@ -20,6 +20,10 @@ class UserController extends Controller
         return view('user.pages.login');
     }
 
+    public function showRegister(){
+        return view('user.pages.register');
+    }
+
     public function profile($id=null){
         if($id == null && auth()->user()!=null)
             $id = auth()->user()->id;

@@ -24,6 +24,8 @@ Route::prefix('/')->group(function(){
         
         
     });
+
+    Route::get('/test',[OrderController::class, 'mail' ]);
     Route::middleware('auth')->prefix('/cart')->group(function(){
         Route::get('/', [CartController::class, 'index'])->name('user.cart.index');
         Route::post('/add',[CartController::class, 'add' ])->name('user.cart.add');
@@ -33,10 +35,17 @@ Route::prefix('/')->group(function(){
 
     Route::middleware('auth')->prefix('/order')->group(function(){
         Route::get('/', [OrderController::class, 'index'])->name('user.order.index');
-        
     });
-    Route::get('/login', [UserController::class, 'index'])->name('login');
-    Route::post('/login', [AccountController::class, 'login'])->name('user.login.login');
+
+    Route::prefix('/login')->group(function(){ 
+        Route::get('/', [UserController::class, 'index'])->name('login');
+        Route::post('/', [AccountController::class, 'login'])->name('user.login.login');
+        
+    }); Route::prefix('/register')->group(function(){ 
+        Route::get('/', [UserController::class, 'showRegister'])->name('register');
+        Route::post('/', [AccountController::class, 'register'])->name('user.register.register');
+    });
+   
 
     Route::prefix('/profile')->group(function(){
        Route::get('/{id?}', [UserController::class, 'profile'])->name('user.profile.index'); 

@@ -84,16 +84,25 @@ class OrderController extends Controller
                 $detailOrder->order_id = $order->id;
                 $detailOrder->quantity = $item->quantity;
                 $detailOrder->current_price	= $item->getProduct->price;
+                $detailOrder->size_id = $item->size_id;
+                // dd($detailOrder);s
                 $this->detailOrderService->add($detailOrder);
                 $this->cartService->delete($item->id);
             }
             //gui mail
-            Mail::to('xwy66278@cdfaq.com')->send(new sendMail());
+            Mail::to(auth()->user()->email)->send(new sendMail($order));
             return redirect(route('user.order.index'))->with('success', "Thanh toán thành công!");
         }else{
             return redirect(route('user.cart.index'))->with('error',"Tiền trong tài khoản của bạn không đủ");
         }
     }
+
+    public function mail(){
+        $order = $this->orderService->find(3);
+        Mail::to('vxb40104@nezid.com')->send(new sendMail($order));
+            return "hello";
+    }
+    
 
     /**
      * Store a newly created resource in storage.

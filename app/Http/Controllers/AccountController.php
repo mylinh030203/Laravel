@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Services\RoleService;
 use App\Http\Services\UserService;
 use App\Http\Services\AccountService;
-use App\Http\Requests\StoreAccountRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\UpdateAccountRequest;
 use Illuminate\Support\Facades\Auth;
 
@@ -64,6 +64,21 @@ class AccountController extends Controller
         return redirect(route('admin.account.index'))->with('info','Thêm thành công');
     }
 
+    public function register(RegisterRequest $request)
+    {
+       
+        $account = new Account();
+        $account->username = $request->username;
+        $account->password = $request->password;
+        $account->role_id = '4';
+        $this->accountservice->add($account);
+        $user = new User();
+        $user->account_id = $account->id;
+        $user->email = $request->email;
+        $user->money = 0;
+        $this->userService->add($user);
+        return redirect(route('user.home.index'))->with('success','Đăng ký thành công');
+    }
     /**
      * Store a newly created resource in storage.
      *
