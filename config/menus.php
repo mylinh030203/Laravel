@@ -15,10 +15,7 @@ return [
                 'name' => 'create',
                 'route' => 'admin.account.showcreate',
             ],
-            [
-                'title' => 'Sửa tài khoản',
-                'name' => 'edit',
-            ]
+           
         ],
     ],
     [
@@ -36,10 +33,7 @@ return [
                 'name' => 'create',
                 'route' => 'admin.role.showcreate',
             ],
-            [
-                'title' => 'Sửa quyền',
-                'name' => 'edit',
-            ]
+          
         ],
     ],
     [
@@ -136,6 +130,19 @@ return [
                 'title' => 'Danh sách đơn đặt hàng',
                 'name' => 'indexAdmin',
                 'route' => 'admin.order.indexAdmin',
+            ],
+           
+        ],
+    ],
+    [
+        'title' => 'Lịch sử giao dịch',
+        'name' => 'autoBank',
+        'route' => 'autoBank',
+        'children' => [
+            [
+                'title' => 'Danh sách các lịch sử giao dịch',
+                'name' => 'index',
+                'route' => 'admin.autoBank.index',
             ],
            
         ],

@@ -58,8 +58,13 @@ class OrderController extends Controller
     {
         
         $data = ['stt_id' => $request->stt_id];
+        if($request->stt_id ==3){
+            $this->userService->changeMoney(-$this->orderService->find($request->id)->total_price);
+            $this->orderService->update($request->id, $data);
+        }
         $this->orderService->update($request->id, $data);
-        return redirect(route('admin.order.indexAdmin')) ;
+        
+        return redirect()->back()->with("info", "Đổi trạng thái thành công");
     }
 
     /**
@@ -121,9 +126,13 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function find(Request $request)
+    public function delete($id = null)
     {
-        
+        foreach($this->orderService->find($id)->getDetailOrders as $item){
+            $this->detailOrderService->delete($item->id); 
+        }
+        $this->orderService->delete($id);
+        return $id;
     }
 
     /**

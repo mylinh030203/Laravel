@@ -35,6 +35,8 @@ Route::prefix('/')->group(function(){
 
     Route::middleware('auth')->prefix('/order')->group(function(){
         Route::get('/', [OrderController::class, 'index'])->name('user.order.index');
+        Route::get('/delete/{id}', [OrderController::class, 'delete'])->name('user.order.detete');
+        Route::post('/', [OrderController::class, 'editStt'])->name('user.order.editStt');
     });
 
     Route::prefix('/login')->group(function(){ 
